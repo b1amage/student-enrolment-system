@@ -11,6 +11,18 @@ public class Enrolment {
         this.semester = semester;
     }
 
+    public Student getStudent() {
+        return student;
+    }
+
+    public Course getCourse() {
+        return course;
+    }
+
+    public String getSemester() {
+        return semester;
+    }
+
     @Override
     public String toString() {
         return "Enrolment{" +

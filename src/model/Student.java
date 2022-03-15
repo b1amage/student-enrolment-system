@@ -1,5 +1,7 @@
 package model;
 
+import utility.date.DateConverter;
+
 import java.util.Date;
 
 public class Student {
@@ -13,13 +15,16 @@ public class Student {
         this.birthday = birthday;
     }
 
+    public String getId() {
+        return id;
+    }
 
     @Override
     public String toString() {
         return "Student{" +
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
-                ", birthday=" + birthday +
+                ", birthday=" + DateConverter.convertDateToString(birthday) +
                 '}';
     }
 }

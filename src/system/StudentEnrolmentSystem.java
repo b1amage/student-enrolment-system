@@ -5,6 +5,8 @@ import model.Enrolment;
 import model.Student;
 import service.CsvService;
 
+import java.io.FileNotFoundException;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,6 +16,8 @@ public class StudentEnrolmentSystem implements StudentEnrolmentManager{
     private List<Enrolment> enrolmentList;
     private CsvService csvService;
 
+    private static final String FILE_PATH = "src/default.csv";
+
     public StudentEnrolmentSystem() {
         studentList = new ArrayList<>();
         courseList = new ArrayList<>();
@@ -21,71 +25,120 @@ public class StudentEnrolmentSystem implements StudentEnrolmentManager{
         csvService = new CsvService(this);
     }
 
-    public void populateData() {
+    public void populateData() throws FileNotFoundException, ParseException {
         populateStudents();
         populateCourses();
         populateEnrolments();
     }
 
-    private void populateStudents() {
-
+    private void populateStudents() throws FileNotFoundException, ParseException {
+        studentList.clear(); // clear all data before populate
+        studentList.addAll(csvService.getStudentsFromCsv(FILE_PATH));
     }
 
-    private void populateCourses() {
-
+    private void populateCourses() throws FileNotFoundException {
+        courseList.clear(); // clear all data before populate
+        courseList.addAll(csvService.getCoursesFromCsv(FILE_PATH));
     }
 
-    private void populateEnrolments() {
-
+    private void populateEnrolments() throws FileNotFoundException {
+        enrolmentList.clear();
+        enrolmentList.addAll(csvService.getEnrolmentsFromCsv(FILE_PATH));
     }
 
     @Override
     public List<Enrolment> getAllEnrolments() {
-        return null;
+        return enrolmentList;
     }
 
     @Override
     public Enrolment getOneEnrolment(String sId, String cId, String semester) {
+        boolean sIdExits;
+        boolean cIdExits;
+        boolean semesterExits;
+
+        for (Enrolment e : enrolmentList) {
+            sIdExits = e.getStudent().getId().equals(sId);
+            cIdExits = e.getCourse().getId().equals(cId);
+            semesterExits = e.getSemester().equals(semester);
+
+            if (sIdExits && cIdExits && semesterExits) {
+                return e;
+            }
+        }
+
         return null;
     }
 
     @Override
     public boolean addEnrolment(String sId, String cId, String semester) {
-        return false;
+        if (getOneEnrolment(sId, cId, semester) != null) {
+            return false;
+        }
+
+        enrolmentList.add(new Enrolment(getStudentById(sId), getCourseById(cId), semester));
+        return true;
     }
 
     @Override
     public boolean removeEnrolment(String sId, String cId, String semester) {
-        return false;
+        Enrolment enrolmentToRemove = getOneEnrolment(sId, cId, semester);
+        if (enrolmentToRemove == null) {
+            return false;
+        }
+
+        enrolmentList.remove(enrolmentToRemove);
+        return true;
     }
 
     @Override
     public List<Course> getAllCourses() {
-        return null;
+        return courseList;
     }
 
     @Override
     public Course getCourseById(String cId) {
+        for (Course c : courseList) {
+            if (c.getId().equals(cId)) {
+                return c;
+            }
+        }
+
         return null;
     }
 
     @Override
     public boolean addCourse(Course courseToAdd) {
-        return false;
+        if (getCourseById(courseToAdd.getId()) != null) {
+            return false;
+        }
+
+        courseList.add(courseToAdd);
+        return true;
     }
 
     @Override
     public List<Student> getAllStudent() {
-        return null;
+        return studentList;
     }
 
     @Override
     public Student getStudentById(String sId) {
+        for (Student s : studentList) {
+            if (s.getId().equals(sId)) {
+                return s;
+            }
+        }
         return null;
     }
 
     @Override
     public boolean addStudent(Student studentToAdd) {
-        return false;
+        if (getStudentById(studentToAdd.getId()) != null) {
+            return false;
+        }
+
+        studentList.add(studentToAdd);
+        return true;
     }
 }
