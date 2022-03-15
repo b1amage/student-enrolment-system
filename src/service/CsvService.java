@@ -14,15 +14,30 @@ import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ *  Class name: CsvService
+ *  Role: Service class
+ *  Functionalities: interact with csv file and process them to models
+ */
 public class CsvService {
     private StudentEnrolmentManager manager;
 
+    /**
+     * Constructor
+     * @param manager StudentEnrolmentSystem for accessing data
+     */
     public CsvService(StudentEnrolmentManager manager) {
         this.manager = manager;
     }
 
-    private Student convertCsvRowToStudent(String line) throws ParseException {
-        String[] fields = line.split(",");
+    /**
+     * Functionality: convert a row (String) to a Student object
+     * @param row a row (String) in csv file
+     * @return a Student object
+     * @throws ParseException cannot parse string with wrong format
+     */
+    private Student convertCsvRowToStudent(String row) throws ParseException {
+        String[] fields = row.split(",");
         trimStringArray(fields);
 
         String sId = fields[0];
@@ -32,8 +47,13 @@ public class CsvService {
         return new Student(sId, name, birthday);
     }
 
-    private Course convertCsvRowToCourse(String line) {
-        String[] fields = line.split(",");
+    /**
+     * Functionality: convert a row (String) to a Course object
+     * @param row a row (String) in csv file
+     * @return a Course object
+     */
+    private Course convertCsvRowToCourse(String row) {
+        String[] fields = row.split(",");
         trimStringArray(fields);
 
         String cID = fields[3];
@@ -43,8 +63,13 @@ public class CsvService {
         return new Course(cID, name, numberOfCredit);
     }
 
-    private Enrolment convertCsvRowToEnrolment(String line) {
-        String[] fields = line.split(",");
+    /**
+     * Functionality: convert a row (String) to an Enrolment object
+     * @param row a row (String) in csv file
+     * @return an Enrolment object
+     */
+    private Enrolment convertCsvRowToEnrolment(String row) {
+        String[] fields = row.split(",");
         trimStringArray(fields);
 
         String sId = fields[0];
@@ -54,8 +79,15 @@ public class CsvService {
         return new Enrolment(manager.getStudentById(sId), manager.getCourseById(cId), semester);
     }
 
-    public List<Student> getStudentsFromCsv(String fileName) throws FileNotFoundException, ParseException {
-        Scanner fileScanner = new Scanner(new File(fileName));
+    /**
+     * Functionality: read csv, convert each row into Student object and add to a list
+     * @param filePath: path of the csv file in the project
+     * @return a list of Student object
+     * @throws FileNotFoundException: wrong file path
+     * @throws ParseException: cannot parse string with wrong format
+     */
+    public List<Student> getStudentsFromCsv(String filePath) throws FileNotFoundException, ParseException {
+        Scanner fileScanner = new Scanner(new File(filePath));
         String row;
         List<Student> students = new ArrayList<>();
         Student student;
@@ -65,21 +97,24 @@ public class CsvService {
 
             if (!row.isEmpty()) {
                 student = convertCsvRowToStudent(row);
-
-                //Check if exits
+                // Check if exits
                 if (!isExist(student, students)) {
                     students.add(student);
                 }
-
             }
         }
 
-//        System.out.println(students);
         return students;
     }
 
-    public List<Course> getCoursesFromCsv(String fileName) throws FileNotFoundException {
-        Scanner fileScanner = new Scanner(new File(fileName));
+    /**
+     * Functionality: read csv, convert each row into Course object and add to a list
+     * @param filePath: path of the csv file in the project
+     * @return a list of Course object
+     * @throws FileNotFoundException: wrong file path
+     */
+    public List<Course> getCoursesFromCsv(String filePath) throws FileNotFoundException {
+        Scanner fileScanner = new Scanner(new File(filePath));
         String row;
         List<Course> courses = new ArrayList<>();
         Course course;
@@ -88,21 +123,24 @@ public class CsvService {
             row = fileScanner.nextLine();
             if (!row.isEmpty()) {
                 course = convertCsvRowToCourse(row);
-
                 // Check if exits
                 if (!isExist(course, courses)) {
                     courses.add(course);
                 }
-
             }
         }
 
-//        System.out.println(courses);
         return courses;
     }
 
-    public List<Enrolment> getEnrolmentsFromCsv(String fileName) throws FileNotFoundException {
-        Scanner fileScanner = new Scanner(new File(fileName));
+    /**
+     * Functionality: read csv, convert each row into Enrolment object and add to a list
+     * @param filePath: path of the csv file in the project
+     * @return a list of Enrolment object
+     * @throws FileNotFoundException: wrong file path
+     */
+    public List<Enrolment> getEnrolmentsFromCsv(String filePath) throws FileNotFoundException {
+        Scanner fileScanner = new Scanner(new File(filePath));
         String row;
         List<Enrolment> enrolments = new ArrayList<>();
         Enrolment enrolment;
@@ -111,24 +149,32 @@ public class CsvService {
             row = fileScanner.nextLine();
             if (!row.isEmpty()) {
                 enrolment = convertCsvRowToEnrolment(row);
-
-//                 Check if exits
+                // Check if exits
                 if (!isExist(enrolment, enrolments)) {
                     enrolments.add(enrolment);
                 }
             }
         }
 
-//        System.out.println(enrolments);
         return enrolments;
     }
 
+    /**
+     * Functionality: trim all redundant space of each String in an array of String
+     * @param fields: an array of String
+     */
     public static void trimStringArray(String[] fields) {
         for (String field : fields) {
             field = field.trim();
         }
     }
 
+    /**
+     * Check if the student is already existed on a list by comparing id
+     * @param student: student to be checked
+     * @param students: list to be checked
+     * @return true if existed, false if not existed
+     */
     private boolean isExist(Student student, List<Student> students) {
         for (Student s : students) {
             if (s.getId().equals(student.getId())) {
@@ -139,6 +185,12 @@ public class CsvService {
         return false;
     }
 
+    /**
+     * Check if the course is already existed on a list by comparing id
+     * @param course: course to be checked
+     * @param courses: list to be checked
+     * @return true if existed, false if not existed
+     */
     private boolean isExist(Course course, List<Course> courses) {
         for (Course c : courses) {
             if (c.getId().equals(course.getId())) {
@@ -149,7 +201,14 @@ public class CsvService {
         return false;
     }
 
+    /**
+     * Check if the course is already existed on a list by comparing student id, course id, and semester
+     * @param enrolment: enrolment to be checked
+     * @param enrolments: list to be checked
+     * @return true if existed, false if not existed
+     */
     private boolean isExist(Enrolment enrolment, List<Enrolment> enrolments) {
+        // Three criteria (sId, cId, semester)
         boolean sIdExits;
         boolean cIdExits;
         boolean semesterExits;
@@ -159,7 +218,7 @@ public class CsvService {
             cIdExits = e.getCourse().getId().equals(enrolment.getCourse().getId());
             semesterExits = e.getSemester().equals(enrolment.getSemester());
 
-            if (sIdExits  && cIdExits && semesterExits) {
+            if (sIdExits  && cIdExits && semesterExits) { // 3 criteria must be true
                 return true;
             }
         }

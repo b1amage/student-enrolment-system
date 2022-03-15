@@ -10,6 +10,11 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Class: StudentEnrolmentSystem
+ * Role: Represent the system
+ * Functionalities: the enrolment system to process request from the user
+ */
 public class StudentEnrolmentSystem implements StudentEnrolmentManager{
     private List<Student> studentList;
     private List<Course> courseList;
@@ -18,6 +23,9 @@ public class StudentEnrolmentSystem implements StudentEnrolmentManager{
 
     private static final String FILE_PATH = "src/default.csv";
 
+    /**
+     * Constructor
+     */
     public StudentEnrolmentSystem() {
         studentList = new ArrayList<>();
         courseList = new ArrayList<>();
@@ -25,22 +33,40 @@ public class StudentEnrolmentSystem implements StudentEnrolmentManager{
         csvService = new CsvService(this);
     }
 
+    /**
+     * Functionality: populate data for the system
+     * @throws FileNotFoundException: wrong file path
+     * @throws ParseException: cannot parse string with wrong format
+     */
     public void populateData() throws FileNotFoundException, ParseException {
         populateStudents();
         populateCourses();
         populateEnrolments();
     }
 
+    /**
+     * Functionality: populate student data for the system
+     * @throws FileNotFoundException: wrong file path
+     * @throws ParseException: cannot parse string with wrong format
+     */
     private void populateStudents() throws FileNotFoundException, ParseException {
         studentList.clear(); // clear all data before populate
         studentList.addAll(csvService.getStudentsFromCsv(FILE_PATH));
     }
 
+    /**
+     * Functionality: populate course data for the system
+     * @throws FileNotFoundException: wrong file path
+     */
     private void populateCourses() throws FileNotFoundException {
         courseList.clear(); // clear all data before populate
         courseList.addAll(csvService.getCoursesFromCsv(FILE_PATH));
     }
 
+    /**
+     * Functionality: populate enrolment data for the system
+     * @throws FileNotFoundException: wrong file path
+     */
     private void populateEnrolments() throws FileNotFoundException {
         enrolmentList.clear();
         enrolmentList.addAll(csvService.getEnrolmentsFromCsv(FILE_PATH));
