@@ -16,10 +16,10 @@ import java.util.List;
  * Functionalities: the enrolment system to process request from the user
  */
 public class StudentEnrolmentSystem implements StudentEnrolmentManager{
-    private List<Student> studentList;
-    private List<Course> courseList;
-    private List<Enrolment> enrolmentList;
-    private CsvService csvService;
+    private final List<Student> studentList;
+    private final List<Course> courseList;
+    private final List<Enrolment> enrolmentList;
+    private final CsvService csvService;
 
     private static final String FILE_PATH = "src/default.csv";
 

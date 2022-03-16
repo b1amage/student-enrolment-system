@@ -1,5 +1,6 @@
 package utility.display;
 
+import menu.Menu;
 import model.Course;
 import model.Enrolment;
 import model.Student;
@@ -8,6 +9,8 @@ import utility.date.DateConverter;
 import java.util.List;
 
 public class Table {
+    private static final String separator = "-";
+
     private static String formatField(String field, int width) {
 
         int padSize = width - field.length();
@@ -25,7 +28,7 @@ public class Table {
         final int birthdayWidth = 15;
         final int fieldCount = 3;
 
-        final String rowSeparator = "-".repeat(idWidth + nameWidth + birthdayWidth + fieldCount + 1);
+        final String rowSeparator = separator.repeat(idWidth + nameWidth + birthdayWidth + fieldCount + 1);
 
         String idField = formatField("ID", idWidth);
         String nameField = formatField("Name", nameWidth);
@@ -54,7 +57,7 @@ public class Table {
         final int creditWidth = 10;
         final int fieldCount = 3;
 
-        final String rowSeparator = "-".repeat(idWidth + nameWidth + creditWidth + fieldCount + 1);
+        final String rowSeparator = separator.repeat(idWidth + nameWidth + creditWidth + fieldCount + 1);
 
         String idField = formatField("ID", idWidth);
         String nameField = formatField("Name", nameWidth);
@@ -70,6 +73,7 @@ public class Table {
             idField = formatField(c.getId(), idWidth);
             nameField = formatField(c.getName(), nameWidth);
             creditField = formatField(String.valueOf(c.getNumberOfCredit()), creditWidth);
+
             System.out.printf("|%" + idWidth + "s|%-" + nameWidth + "s|%-" + creditWidth + "s|\n", idField, nameField, creditField);
         }
 
@@ -83,7 +87,7 @@ public class Table {
         final int semesterWidth = 10;
         final int fieldCount = 3;
 
-        final String rowSeparator = "-".repeat(sIdWidth + cIDWidth + semesterWidth + fieldCount + 1);
+        final String rowSeparator = separator.repeat(sIdWidth + cIDWidth + semesterWidth + fieldCount + 1);
 
         String sIdField = formatField("SID", sIdWidth );
         String cIdField = formatField("CID", cIDWidth );
@@ -98,9 +102,37 @@ public class Table {
         for (Enrolment e : enrolments) {
             sIdField = formatField(e.getStudent().getId(), sIdWidth);
             cIdField = formatField(e.getCourse().getId(), cIDWidth);
+
             semesterField = formatField(e.getSemester(), semesterWidth);
 
             System.out.printf("|%" + sIdWidth + "s|%-" + cIDWidth  + "s|%-" + semesterWidth + "s|\n", sIdField, cIdField, semesterField);
+        }
+
+        // Print footer
+        System.out.println(rowSeparator);
+    }
+
+    public static void displayMenuTable(Menu menu) {
+        final int toggleWidth = 10;
+        final int commandWidth = 40;
+        final int fieldCount = 2;
+
+        String toggleField = formatField("Toggle", toggleWidth);
+        String commandField = formatField("Command", commandWidth);
+
+        final String rowSeparator = separator.repeat(toggleWidth + commandWidth + fieldCount + 1);
+        List<String> commands = menu.getCommands();
+
+        // Print header
+        System.out.println(rowSeparator);
+        System.out.printf("|%" + toggleWidth + "s|%-" + commandWidth + "s|\n", toggleField, commandField);
+        System.out.println(rowSeparator);
+
+        // Print body
+        for (int i = 0; i < commands.size(); i++) {
+            toggleField = formatField(String.valueOf(i + 1), toggleWidth);
+            commandField = formatField(commands.get(i), commandWidth);
+            System.out.printf("|%" + toggleWidth + "s|%-" + commandWidth + "s|\n", toggleField, commandField);
         }
 
         // Print footer
