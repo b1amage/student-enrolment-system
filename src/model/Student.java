@@ -34,6 +34,22 @@ public class Student {
         return id;
     }
 
+    /**
+     * Getter for name
+     * @return student name
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * Getter for birthday
+     * @return birthday date object
+     */
+    public Date getBirthday() {
+        return birthday;
+    }
+
     @Override
     public String toString() {
         return "Student{" +

@@ -90,7 +90,7 @@ public class CsvService {
         Scanner fileScanner = new Scanner(new File(filePath));
         String row;
         List<Student> students = new ArrayList<>();
-        Student student;
+        Student student; // storing temporary student
 
         while (fileScanner.hasNextLine()) {
             row = fileScanner.nextLine();
@@ -117,7 +117,7 @@ public class CsvService {
         Scanner fileScanner = new Scanner(new File(filePath));
         String row;
         List<Course> courses = new ArrayList<>();
-        Course course;
+        Course course; // storing temporary course
 
         while (fileScanner.hasNextLine()) {
             row = fileScanner.nextLine();
@@ -143,7 +143,7 @@ public class CsvService {
         Scanner fileScanner = new Scanner(new File(filePath));
         String row;
         List<Enrolment> enrolments = new ArrayList<>();
-        Enrolment enrolment;
+        Enrolment enrolment; // storing temporary enrolment
 
         while (fileScanner.hasNextLine()) {
             row = fileScanner.nextLine();

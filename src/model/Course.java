@@ -30,6 +30,22 @@ public class Course {
         return id;
     }
 
+    /**
+     * Getter for course name
+     * @return course name
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * Getter for credit
+     * @return number of credit
+     */
+    public int getNumberOfCredit() {
+        return numberOfCredit;
+    }
+
     @Override
     public String toString() {
         return "Course{" +
