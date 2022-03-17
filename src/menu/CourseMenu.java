@@ -25,7 +25,24 @@ public class CourseMenu extends Menu{
 
     @Override
     public void run() {
+        while (true) {
+            showMenu();
+            String option = getOption();
 
+            switch (option) {
+                case "1":
+                    viewAllCourses();
+                    break;
+                case "2":
+                    viewAllCoursesInASemester();
+                    break;
+                case "3":
+                    viewAllCourseOfAStudentInASemester();
+                    break;
+                case "4":
+                    return;
+            }
+        }
     }
 
     @Override

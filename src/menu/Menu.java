@@ -12,6 +12,21 @@ public abstract class Menu {
     public void showMenu() {
         Table.displayMenuTable(this);
     }
+
+    public String getOption() {
+        String option;
+        do {
+            System.out.println("Enter option: ");
+            option = sc.nextLine().trim();
+
+            if (Integer.parseInt(option) < 1 || Integer.parseInt(option) > getCommands().size()) {
+                System.out.println("Invalid option, try again: ");
+            }
+
+        } while (Integer.parseInt(option) < 1 || Integer.parseInt(option) > getCommands().size());
+
+        return option;
+    }
     public abstract void run();
     public abstract List<String> getCommands();
 }

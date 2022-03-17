@@ -21,7 +21,6 @@ public class MainMenu extends Menu {
     private StudentEnrolmentManager manager;
 
     public MainMenu(StudentEnrolmentManager manager) {
-        manager = new StudentEnrolmentSystem();
         studentMenu = new StudentMenu(manager);
         courseMenu = new CourseMenu(manager);
         enrolmentMenu = new EnrolmentMenu(manager);
@@ -29,7 +28,28 @@ public class MainMenu extends Menu {
 
     @Override
     public void run() {
+        while (true) {
+            showMenu();
+            String option = getOption();
 
+            switch (option) {
+                case "1":
+                    System.out.println("*********** Managing Student ***********");
+                    studentMenu.run();
+                    break;
+                case "2":
+                    System.out.println("*********** Managing Course ***********");
+                    courseMenu.run();
+                    break;
+                case "3":
+                    System.out.println("*********** Managing Enrolment ***********");
+                    enrolmentMenu.run();
+                    break;
+                default:
+                    System.out.println("Quit");
+                    return;
+            }
+        }
     }
 
     @Override

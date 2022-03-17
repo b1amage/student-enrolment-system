@@ -20,7 +20,7 @@ public class StudentService {
     }
 
     public List<Student> getAllStudentInACourse(String cId, String semester) {
-        if (!isCourseExist(cId)) return null;
+        if (manager.getCourseById(cId) == null) return null;
 
         List<Student> studentsByCourse = new ArrayList<>();
 
@@ -30,9 +30,5 @@ public class StudentService {
         }
 
         return studentsByCourse; // isEmpty if semester not found
-    }
-
-    private boolean isCourseExist(String cId) {
-        return manager.getCourseById(cId) != null;
     }
 }

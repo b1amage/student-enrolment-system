@@ -24,7 +24,24 @@ public class EnrolmentMenu extends Menu {
 
     @Override
     public void run() {
+        while (true) {
+            showMenu();
+            String option = getOption();
 
+            switch (option) {
+                case "1":
+                    viewAllEnrolments();
+                    break;
+                case "2":
+                    addEnrolment();
+                    break;
+                case "3":
+                    dropEnrolment();
+                    break;
+                case "4":
+                    return;
+            }
+        }
     }
 
     @Override
