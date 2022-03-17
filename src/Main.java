@@ -22,10 +22,19 @@ public class Main {
 //        sMenu.viewAllStudent();
 //        sMenu.viewAllStudentInACourseInASemester();
 
-        CourseMenu cMenu = new CourseMenu(system);
-        cMenu.viewAllCourses();
+//        CourseMenu cMenu = new CourseMenu(system);
+//        cMenu.viewAllCourses();
 //        cMenu.viewAllCoursesInASemester();
-        cMenu.viewAllCourseOfAStudentInASemester();
+//        cMenu.viewAllCourseOfAStudentInASemester();
+
+        EnrolmentMenu eMenu = new EnrolmentMenu(system);
+        eMenu.viewAllEnrolments();
+//        eMenu.addEnrolment();
+//        eMenu.viewAllEnrolments();
+
+        eMenu.dropEnrolment();
+        eMenu.viewAllEnrolments();
+
     }
 
 

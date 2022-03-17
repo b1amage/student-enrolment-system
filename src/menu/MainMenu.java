@@ -24,7 +24,7 @@ public class MainMenu extends Menu {
         manager = new StudentEnrolmentSystem();
         studentMenu = new StudentMenu(manager);
         courseMenu = new CourseMenu(manager);
-        enrolmentMenu = new EnrolmentMenu();
+        enrolmentMenu = new EnrolmentMenu(manager);
     }
 
     @Override
