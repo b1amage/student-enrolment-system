@@ -3,8 +3,10 @@ package menu;
 import model.Student;
 import service.StudentService;
 import system.StudentEnrolmentManager;
+import utility.csv.CsvWriter;
 import utility.display.Table;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,7 +25,7 @@ public class StudentMenu extends Menu {
     }
 
     @Override
-    public void run() {
+    public void run() throws IOException {
         while (true) {
             showMenu();
             String option = getOption();
@@ -50,7 +52,7 @@ public class StudentMenu extends Menu {
         Table.displayStudentTable(studentService.getStudents());
     }
 
-    public void viewAllStudentInACourseInASemester() {
+    public void viewAllStudentInACourseInASemester() throws IOException {
         // Get inputs
         System.out.println("Enter course ID: ");
         String cId = sc.nextLine().trim();
@@ -67,6 +69,13 @@ public class StudentMenu extends Menu {
             System.out.printf("Course with id %s may not be available at semester %s!\n", cId, semester);
         } else {
             Table.displayStudentTable(studentsByCourse);
+
+            // Ask if write to CSV file
+            System.out.println("Save those data to a csv file? (y/n)");
+            if (sc.nextLine().trim().toLowerCase().equals("y")) {
+                String filePath = "src/reports/student/students_" + cId + "_" + semester + ".csv";
+                CsvWriter.writeStudentToFile(filePath, studentsByCourse);
+            }
         }
     }
 }

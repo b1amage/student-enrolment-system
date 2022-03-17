@@ -3,6 +3,7 @@ package menu;
 import system.StudentEnrolmentManager;
 import system.StudentEnrolmentSystem;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,7 +28,7 @@ public class MainMenu extends Menu {
     }
 
     @Override
-    public void run() {
+    public void run() throws IOException {
         while (true) {
             showMenu();
             String option = getOption();
@@ -46,7 +47,7 @@ public class MainMenu extends Menu {
                     enrolmentMenu.run();
                     break;
                 default:
-                    System.out.println("Quit");
+                    System.out.println("*********** Good Bye! ***********");
                     return;
             }
         }

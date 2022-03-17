@@ -2,6 +2,7 @@ package menu;
 
 import utility.display.Table;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -27,6 +28,6 @@ public abstract class Menu {
 
         return option;
     }
-    public abstract void run();
+    public abstract void run() throws IOException;
     public abstract List<String> getCommands();
 }
