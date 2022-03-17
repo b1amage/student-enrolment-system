@@ -36,7 +36,7 @@ public class StudentMenu extends Menu {
         Table.displayStudentTable(studentService.getStudents());
     }
 
-    public void viewAllStudentInACourse() {
+    public void viewAllStudentInACourseInASemester() {
         // Get inputs
         System.out.println("Enter course ID: ");
         String cId = sc.nextLine().trim();

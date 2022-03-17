@@ -38,6 +38,41 @@ public class CourseMenu extends Menu{
     }
 
     public void viewAllCoursesInASemester() {
+        // Input semester
+        System.out.println("Enter semester: ");
+        String semester = sc.nextLine().trim();
 
+        // Call service to get filtered list
+        List<Course> coursesBySemester = courseService.getCourseBySemester(semester);
+
+        // Check and display
+        if (coursesBySemester == null) {
+            System.out.printf("There is no course on semester %s!\n", semester);
+        } else {
+            Table.displayCourseTable(coursesBySemester);
+        }
+
+    }
+
+    public void viewAllCourseOfAStudentInASemester() {
+        // Input student id
+        System.out.println("Enter student id: ");
+        String sId = sc.nextLine().trim();
+
+        // Input semester
+        System.out.println("Enter semester: ");
+        String semester = sc.nextLine().trim();
+
+        // Call service to get filter list
+        List<Course> coursesOfStudentBySemester = courseService.getCourseOfAStudentBySemester(sId, semester);
+
+        // Check and display
+        if (coursesOfStudentBySemester == null) {
+            System.out.printf("Student with id %s does not exist!\n", sId);
+        } else if (coursesOfStudentBySemester.isEmpty()) {
+            System.out.printf("Student with id %s does not have any course in semester %s!\n", sId, semester);
+        } else {
+            Table.displayCourseTable(coursesOfStudentBySemester);
+        }
     }
 }
