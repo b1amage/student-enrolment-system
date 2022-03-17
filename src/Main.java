@@ -20,11 +20,10 @@ public class Main {
 
         StudentMenu sMenu = new StudentMenu(system);
         sMenu.viewAllStudent();
+        sMenu.viewAllStudentInACourse();
 
-        CourseMenu cMenu = new CourseMenu(system);
-        cMenu.viewAllCourses();
-
-
+//        CourseMenu cMenu = new CourseMenu(system);
+//        cMenu.viewAllCourses();
     }
 
 

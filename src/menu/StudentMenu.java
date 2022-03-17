@@ -6,9 +6,7 @@ import system.StudentEnrolmentManager;
 import utility.display.Table;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Scanner;
 
 public class StudentMenu extends Menu {
     private static final ArrayList<String> commands =
@@ -39,6 +37,22 @@ public class StudentMenu extends Menu {
     }
 
     public void viewAllStudentInACourse() {
+        // Get inputs
+        System.out.println("Enter course ID: ");
+        String cId = sc.nextLine().trim();
 
+        System.out.println("Enter semester: ");
+        String semester = sc.nextLine().trim();
+
+        // Query
+        List<Student> studentsByCourse = studentService.getAllStudentInACourse(cId, semester);
+
+        if (studentsByCourse == null) {
+            System.out.printf("Course with id %s is not exist!\n", cId);
+        } else if (studentsByCourse.isEmpty()) {
+            System.out.printf("Course with id %s may not be available at semester %s!\n", cId, semester);
+        } else {
+            Table.displayStudentTable(studentsByCourse);
+        }
     }
 }

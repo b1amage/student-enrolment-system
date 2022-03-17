@@ -20,14 +20,19 @@ public class StudentService {
     }
 
     public List<Student> getAllStudentInACourse(String cId, String semester) {
+        if (!isCourseExist(cId)) return null;
+
         List<Student> studentsByCourse = new ArrayList<>();
 
         for (Enrolment e : manager.getAllEnrolments()) {
-            if (e.getCourse().getId().equals(cId) && e.getSemester().equals(semester)) {
+            if (e.getCourse().getId().equals(cId) && e.getSemester().equals(semester))
                 studentsByCourse.add(e.getStudent());
-            }
         }
 
-        return studentsByCourse.isEmpty() ? null : studentsByCourse;
+        return studentsByCourse; // isEmpty if semester not found
+    }
+
+    private boolean isCourseExist(String cId) {
+        return manager.getCourseById(cId) != null;
     }
 }
