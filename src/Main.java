@@ -1,5 +1,4 @@
-import menu.Menu;
-import menu.StudentMenu;
+import menu.*;
 import model.Course;
 import model.Student;
 import system.StudentEnrolmentSystem;
@@ -16,15 +15,15 @@ import java.util.List;
 public class Main {
 
     public static void main(String[] args) throws FileNotFoundException, ParseException {
-//        StudentEnrolmentSystem system = new StudentEnrolmentSystem();
-//        system.populateData();
-//
-//        Table.displayStudentTable(system.getAllStudent());
-//        Table.displayCourseTable(system.getAllCourses());
-//        Table.displayEnrolmentTable(system.getAllEnrolments());
+        StudentEnrolmentSystem system = new StudentEnrolmentSystem();
+        system.populateData();
 
-        Menu sMenu = new StudentMenu();
-        sMenu.showMenu();
+        StudentMenu sMenu = new StudentMenu(system);
+        sMenu.viewAllStudent();
+
+        CourseMenu cMenu = new CourseMenu(system);
+        cMenu.viewAllCourses();
+
 
     }
 

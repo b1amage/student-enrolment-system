@@ -1,6 +1,8 @@
 package menu;
 
 import model.Student;
+import service.StudentService;
+import system.StudentEnrolmentManager;
 import utility.display.Table;
 
 import java.util.ArrayList;
@@ -16,9 +18,10 @@ public class StudentMenu extends Menu {
                 add("Back");
             }};
 
-    private static final Scanner sc = new Scanner(System.in);
+    private StudentService studentService;
 
-    public StudentMenu() {
+    public StudentMenu(StudentEnrolmentManager manager) {
+        this.studentService = new StudentService(manager);
     }
 
     @Override
@@ -29,5 +32,13 @@ public class StudentMenu extends Menu {
     @Override
     public List<String> getCommands() {
         return commands;
+    }
+
+    public void viewAllStudent() {
+        Table.displayStudentTable(studentService.getStudents());
+    }
+
+    public void viewAllStudentInACourse() {
+
     }
 }

@@ -114,7 +114,7 @@ public class Table {
 
     public static void displayMenuTable(Menu menu) {
         final int toggleWidth = 10;
-        final int commandWidth = 40;
+        final int commandWidth = 50;
         final int fieldCount = 2;
 
         String toggleField = formatField("Toggle", toggleWidth);
