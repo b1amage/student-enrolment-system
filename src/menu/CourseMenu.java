@@ -21,6 +21,10 @@ public class CourseMenu extends Menu{
 
     private CourseService courseService;
 
+    /**
+     * Constructor for course menu
+     * @param manager: StudentEnrolmentManager system with populated data
+     */
     public CourseMenu(StudentEnrolmentManager manager) {
         this.courseService = new CourseService(manager);
     }
@@ -52,10 +56,17 @@ public class CourseMenu extends Menu{
         return commands;
     }
 
+    /**
+     * Functionality: request the student service to get all courses
+     */
     public void viewAllCourses() {
         Table.displayCourseTable(courseService.getCourses());
     }
 
+    /**
+     * Functionality: get users' inputs and request service to view all course in a semester
+     * @throws IOException: file cannot be opened
+     */
     public void viewAllCoursesInASemester() throws IOException {
         // Input semester
         System.out.println("Enter semester: ");
@@ -80,6 +91,10 @@ public class CourseMenu extends Menu{
 
     }
 
+    /**
+     * Functionality: get users' inputs and request service to view all courses of a student in a semester
+     * @throws IOException
+     */
     public void viewAllCourseOfAStudentInASemester() throws IOException {
         // Input student id
         System.out.println("Enter student id: ");

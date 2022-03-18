@@ -2,6 +2,7 @@ package utility.date;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+
 import java.util.Date;
 
 /**
@@ -13,7 +14,7 @@ public class DateConverter {
     private static final String FORMAT = "MM/dd/yyyy";
     private static final SimpleDateFormat converter = new SimpleDateFormat(FORMAT);
 
-    /** Set it to private to avoid user initialize DateConverter Object */
+    // Set constructor to private to avoid user initialize DateConverter instance
     private DateConverter() {
     }
 

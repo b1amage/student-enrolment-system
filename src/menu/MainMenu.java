@@ -1,7 +1,6 @@
 package menu;
 
 import system.StudentEnrolmentManager;
-import system.StudentEnrolmentSystem;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -16,12 +15,16 @@ public class MainMenu extends Menu {
                 add("Quit");
             }};
 
-    private StudentMenu studentMenu;
-    private CourseMenu courseMenu;
-    private EnrolmentMenu enrolmentMenu;
-    private StudentEnrolmentManager manager;
+    private final StudentMenu studentMenu;
+    private final CourseMenu courseMenu;
+    private final EnrolmentMenu enrolmentMenu;
 
+    /**
+     * Constructor for main menu
+     * @param manager: StudentEnrolmentManager system with populated data
+     */
     public MainMenu(StudentEnrolmentManager manager) {
+        // Initialize each menu
         studentMenu = new StudentMenu(manager);
         courseMenu = new CourseMenu(manager);
         enrolmentMenu = new EnrolmentMenu(manager);
@@ -34,21 +37,22 @@ public class MainMenu extends Menu {
             String option = getOption();
 
             switch (option) {
-                case "1":
+                case "1" -> {
                     System.out.println("*********** Managing Student ***********");
                     studentMenu.run();
-                    break;
-                case "2":
+                }
+                case "2" -> {
                     System.out.println("*********** Managing Course ***********");
                     courseMenu.run();
-                    break;
-                case "3":
+                }
+                case "3" -> {
                     System.out.println("*********** Managing Enrolment ***********");
                     enrolmentMenu.run();
-                    break;
-                default:
+                }
+                default -> {
                     System.out.println("*********** Good Bye! ***********");
                     return;
+                }
             }
         }
     }

@@ -18,6 +18,10 @@ public class EnrolmentMenu extends Menu {
 
     private EnrolmentService enrolmentService;
 
+    /**
+     * Constructor for enrolment menu
+     * @param manager: StudentEnrolmentManager system with populated data
+     */
     public EnrolmentMenu(StudentEnrolmentManager manager) {
         this.enrolmentService = new EnrolmentService(manager);
     }
@@ -49,10 +53,16 @@ public class EnrolmentMenu extends Menu {
         return commands;
     }
 
+    /**
+     * Functionality: request service to get all enrolments
+     */
     public void viewAllEnrolments() {
         Table.displayEnrolmentTable(enrolmentService.getEnrolments());
     }
 
+    /**
+     * Functionality: get users' inputs and request service to add a new enrolment
+     */
     public void addEnrolment() {
         // Input sID
         System.out.println("Enter student ID: ");
@@ -73,6 +83,9 @@ public class EnrolmentMenu extends Menu {
         System.out.println(isSuccess ? "Enrol successfully!" : "Enrol failed!");
     }
 
+    /**
+     * Functionality: get users' inputs and request service to drop new enrolment
+     */
     public void dropEnrolment() {
         // Input sID
         System.out.println("Enter student ID: ");

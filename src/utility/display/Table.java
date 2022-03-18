@@ -1,16 +1,33 @@
 package utility.display;
 
 import menu.Menu;
+
 import model.Course;
 import model.Enrolment;
 import model.Student;
+
 import utility.date.DateConverter;
 
 import java.util.List;
 
+/**
+ * Class name: Table
+ * Role: Utility class
+ * Functionalities: display List<Object> as table
+ * */
 public class Table {
     private static final String separator = "-";
 
+    // Set constructor to private to avoid user initialize Table instance
+    private Table() {
+    }
+
+    /**
+     * Functionality: centralizer the fields of table with appropriate spacing
+     * @param field: string field to be formatted
+     * @param width: min-width of the field
+     * @return a formatted field
+     */
     private static String formatField(String field, int width) {
 
         int padSize = width - field.length();
@@ -22,6 +39,10 @@ public class Table {
         return field;
     }
 
+    /**
+     * Functionality: display a list of student as a table
+     * @param students: list of student
+     */
     public static void displayStudentTable(List<Student> students) {
         final int idWidth = 10;
         final int nameWidth = 20;
@@ -51,6 +72,10 @@ public class Table {
         System.out.println(rowSeparator);
     }
 
+    /**
+     * Functionality: display a list of course as a table
+     * @param courses: list of course
+     */
     public static void displayCourseTable(List<Course> courses) {
         final int idWidth = 10;
         final int nameWidth = 40;
@@ -81,6 +106,10 @@ public class Table {
         System.out.println(rowSeparator);
     }
 
+    /**
+     * Functionality: display a list of enrolment as a table
+     * @param enrolments: list of enrolment
+     */
     public static void displayEnrolmentTable(List<Enrolment> enrolments) {
         final int sIdWidth = 10;
         final int cIDWidth = 10;
@@ -112,6 +141,10 @@ public class Table {
         System.out.println(rowSeparator);
     }
 
+    /**
+     * Functionality: display a menu under a list of commands
+     * @param menu: a menu to be display
+     */
     public static void displayMenuTable(Menu menu) {
         final int toggleWidth = 10;
         final int commandWidth = 50;

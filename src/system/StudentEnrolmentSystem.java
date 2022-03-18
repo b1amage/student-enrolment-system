@@ -3,10 +3,13 @@ package system;
 import model.Course;
 import model.Enrolment;
 import model.Student;
+
 import service.CsvService;
 
 import java.io.FileNotFoundException;
+
 import java.text.ParseException;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,7 +24,7 @@ public class StudentEnrolmentSystem implements StudentEnrolmentManager{
     private final List<Enrolment> enrolmentList;
     private final CsvService csvService;
 
-    private static final String FILE_PATH = "src/default.csv";
+    private static final String FILE_PATH = "src/default.csv"; // data given by requirement
 
     /**
      * Constructor
