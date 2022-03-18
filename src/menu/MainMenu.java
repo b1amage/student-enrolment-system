@@ -8,7 +8,7 @@ import java.util.List;
 
 public class MainMenu extends Menu {
     private static final ArrayList<String> commands =
-            new ArrayList() {{
+            new ArrayList<>() {{
                 add("Manage Student");
                 add("Manage Course");
                 add("Manage Enrolment");

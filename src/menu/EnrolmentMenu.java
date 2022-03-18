@@ -9,7 +9,7 @@ import java.util.List;
 
 public class EnrolmentMenu extends Menu {
     private static final ArrayList<String> commands =
-            new ArrayList() {{
+            new ArrayList<>() {{
                 add("View all enrolments");
                 add("Add an enrolment");
                 add("Drop an enrolment");

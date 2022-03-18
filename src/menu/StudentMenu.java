@@ -21,7 +21,7 @@ import java.util.List;
  * */
 public class StudentMenu extends Menu {
     private static final ArrayList<String> commands =
-            new ArrayList() {{
+            new ArrayList<>() {{
                 add("View all students");
                 add("View all students in a course");
                 add("Back");

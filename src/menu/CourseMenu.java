@@ -12,14 +12,14 @@ import java.util.List;
 
 public class CourseMenu extends Menu{
     private static final ArrayList<String> commands =
-            new ArrayList() {{
+            new ArrayList<>() {{
                 add("View all courses");
                 add("View all courses in a semester");
                 add("View all courses of a student in a semester");
                 add("Back");
             }};
 
-    private CourseService courseService;
+    private final CourseService courseService;
 
     /**
      * Constructor for course menu
@@ -83,7 +83,7 @@ public class CourseMenu extends Menu{
 
             // Ask if write to csv file
             System.out.println("Save those data to a csv file? (y/n)");
-            if (sc.nextLine().trim().toLowerCase().equals("y")) {
+            if (sc.nextLine().trim().equalsIgnoreCase("y")) {
                 String filePath = "src/reports/course/courses_" + semester + ".csv";
                 CsvWriter.writeCourseToFile(filePath, coursesBySemester);
             }
@@ -93,7 +93,6 @@ public class CourseMenu extends Menu{
 
     /**
      * Functionality: get users' inputs and request service to view all courses of a student in a semester
-     * @throws IOException
      */
     public void viewAllCourseOfAStudentInASemester() throws IOException {
         // Input student id
@@ -117,7 +116,7 @@ public class CourseMenu extends Menu{
 
             // Ask if write to csv file
             System.out.println("Save those data to a csv file? (y/n)");
-            if (sc.nextLine().trim().toLowerCase().equals("y")) {
+            if (sc.nextLine().trim().equalsIgnoreCase("y")) {
                 String filePath = "src/reports/course/courses_" + sId + "_" + semester + ".csv";
                 CsvWriter.writeCourseToFile(filePath, coursesOfStudentBySemester);
             }
