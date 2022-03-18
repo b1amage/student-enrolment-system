@@ -12,6 +12,7 @@ import java.text.ParseException;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 /**
  * Class: StudentEnrolmentSystem
@@ -24,7 +25,7 @@ public class StudentEnrolmentSystem implements StudentEnrolmentManager {
     private final List<Enrolment> enrolmentList;
     private final CsvService csvService;
 
-    private static final String FILE_PATH = "src/data/default.csv"; // default data given by requirement
+    private static final String DEFAULT_FILE_PATH = "src/data/default.csv"; // default data given by requirement
 
     /**
      * Constructor
@@ -42,9 +43,10 @@ public class StudentEnrolmentSystem implements StudentEnrolmentManager {
      * @throws ParseException: cannot parse string with wrong format
      */
     public void populateData() throws FileNotFoundException, ParseException {
-        populateStudents();
-        populateCourses();
-        populateEnrolments();
+        String fileName = getFileName();
+        populateStudents(fileName);
+        populateCourses(fileName);
+        populateEnrolments(fileName);
     }
 
     /**
@@ -52,27 +54,44 @@ public class StudentEnrolmentSystem implements StudentEnrolmentManager {
      * @throws FileNotFoundException: wrong file path
      * @throws ParseException: cannot parse string with wrong format
      */
-    private void populateStudents() throws FileNotFoundException, ParseException {
+    private void populateStudents(String fileName) throws FileNotFoundException, ParseException {
         studentList.clear(); // clear all data before populate
-        studentList.addAll(csvService.getStudentsFromCsv(FILE_PATH));
+        if (fileName.isEmpty()) {
+            studentList.addAll(csvService.getStudentsFromCsv(DEFAULT_FILE_PATH));
+        } else {
+            String filePath = "src/data/" + fileName;
+            studentList.addAll(csvService.getStudentsFromCsv(filePath));
+        }
     }
 
     /**
      * Functionality: populate course data for the system
      * @throws FileNotFoundException: wrong file path
      */
-    private void populateCourses() throws FileNotFoundException {
+    private void populateCourses(String fileName) throws FileNotFoundException {
         courseList.clear(); // clear all data before populate
-        courseList.addAll(csvService.getCoursesFromCsv(FILE_PATH));
+        if (fileName.isEmpty()) {
+            courseList.addAll(csvService.getCoursesFromCsv(DEFAULT_FILE_PATH));
+        } else {
+            String filePath = "src/data/" + fileName;
+            courseList.addAll(csvService.getCoursesFromCsv(filePath));
+        }
+
     }
 
     /**
      * Functionality: populate enrolment data for the system
      * @throws FileNotFoundException: wrong file path
      */
-    private void populateEnrolments() throws FileNotFoundException {
+    private void populateEnrolments(String fileName) throws FileNotFoundException {
         enrolmentList.clear();
-        enrolmentList.addAll(csvService.getEnrolmentsFromCsv(FILE_PATH));
+        if (fileName.isEmpty()) {
+            enrolmentList.addAll(csvService.getEnrolmentsFromCsv(DEFAULT_FILE_PATH));
+        } else {
+            String filePath = "src/data/" + fileName;
+            enrolmentList.addAll(csvService.getEnrolmentsFromCsv(filePath));
+        }
+
     }
 
     @Override
@@ -169,5 +188,18 @@ public class StudentEnrolmentSystem implements StudentEnrolmentManager {
 
         studentList.add(studentToAdd);
         return true;
+    }
+
+    private String getFileName() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("You want to use your own file? (y/n): ");
+
+        String fileName = "";
+        if (sc.nextLine().equalsIgnoreCase("y")) {
+            System.out.println("Enter file name (with the .csv): ");
+            fileName = sc.nextLine().trim();
+        }
+
+        return fileName;
     }
 }

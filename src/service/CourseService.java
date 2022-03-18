@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Set;
 
 public class CourseService {
-    private StudentEnrolmentManager manager;
+    private final StudentEnrolmentManager manager;
 
     public CourseService(StudentEnrolmentManager manager) {
         this.manager = manager;

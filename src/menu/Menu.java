@@ -8,7 +8,6 @@ import java.util.List;
 import java.util.Scanner;
 
 public abstract class Menu {
-    private List<String> commands;
     protected static final Scanner sc = new Scanner(System.in); // for scanning data
 
     /**
@@ -43,7 +42,7 @@ public abstract class Menu {
      * @param message: Message to print out for user
      * @return user input under string format
      */
-    public String input(String message) {
+    protected String input(String message) {
         System.out.println(message);
         return sc.nextLine().trim();
     }

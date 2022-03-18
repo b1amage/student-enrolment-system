@@ -27,7 +27,7 @@ public class StudentMenu extends Menu {
                 add("Back");
             }};
 
-    private StudentService studentService;
+    private final StudentService studentService;
 
     /**
      * Constructor

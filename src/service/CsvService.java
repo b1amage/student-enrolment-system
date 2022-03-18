@@ -20,7 +20,7 @@ import java.util.Scanner;
  *  Functionalities: interact with csv file and process them to models
  */
 public class CsvService {
-    private StudentEnrolmentManager manager;
+    private final StudentEnrolmentManager manager;
 
     /**
      * Constructor

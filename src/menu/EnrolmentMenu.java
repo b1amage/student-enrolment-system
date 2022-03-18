@@ -33,7 +33,7 @@ public class EnrolmentMenu extends Menu {
     }
 
     @Override
-    public void run() throws IOException {
+    public void run() {
         while (true) {
             showMenu();
             String option = getOption();
