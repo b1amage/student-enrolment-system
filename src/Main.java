@@ -1,3 +1,4 @@
+import exception.WrongCsvFormatException;
 import menu.*;
 import system.StudentEnrolmentSystem;
 
@@ -10,7 +11,7 @@ import java.text.ParseException;
  * Functionalities: Initialize necessary instances and run as client code
  */
 public class Main {
-    public static void main(String[] args) throws IOException, ParseException {
+    public static void main(String[] args) throws IOException, ParseException, WrongCsvFormatException {
         // Initialize new instance of StudentEnrolmentSystem
         StudentEnrolmentSystem system = new StudentEnrolmentSystem();
 

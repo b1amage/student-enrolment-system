@@ -1,9 +1,11 @@
 package service;
 
+import exception.WrongCsvFormatException;
 import model.Course;
 import model.Enrolment;
 import model.Student;
 import system.StudentEnrolmentManager;
+import utility.csv.CsvValidator;
 import utility.date.DateConverter;
 
 import java.io.File;
@@ -86,7 +88,7 @@ public class CsvService {
      * @throws FileNotFoundException: wrong file path
      * @throws ParseException: cannot parse string with wrong format
      */
-    public List<Student> getStudentsFromCsv(String filePath) throws FileNotFoundException, ParseException {
+    public List<Student> getStudentsFromCsv(String filePath) throws FileNotFoundException, ParseException, WrongCsvFormatException {
         Scanner fileScanner = new Scanner(new File(filePath));
         String row;
         List<Student> students = new ArrayList<>();
@@ -94,6 +96,11 @@ public class CsvService {
 
         while (fileScanner.hasNextLine()) {
             row = fileScanner.nextLine();
+
+            // Validate row
+            if (!CsvValidator.isAValidCsvRow(row)) {
+                throw new WrongCsvFormatException();
+            }
 
             if (!row.isEmpty()) {
                 student = convertCsvRowToStudent(row);
@@ -113,7 +120,7 @@ public class CsvService {
      * @return a list of Course object
      * @throws FileNotFoundException: wrong file path
      */
-    public List<Course> getCoursesFromCsv(String filePath) throws FileNotFoundException {
+    public List<Course> getCoursesFromCsv(String filePath) throws FileNotFoundException, WrongCsvFormatException {
         Scanner fileScanner = new Scanner(new File(filePath));
         String row;
         List<Course> courses = new ArrayList<>();
@@ -121,6 +128,12 @@ public class CsvService {
 
         while (fileScanner.hasNextLine()) {
             row = fileScanner.nextLine();
+
+            // Validate row
+            if (!CsvValidator.isAValidCsvRow(row)) {
+                throw new WrongCsvFormatException();
+            }
+
             if (!row.isEmpty()) {
                 course = convertCsvRowToCourse(row);
                 // Check if exits
@@ -139,7 +152,7 @@ public class CsvService {
      * @return a list of Enrolment object
      * @throws FileNotFoundException: wrong file path
      */
-    public List<Enrolment> getEnrolmentsFromCsv(String filePath) throws FileNotFoundException {
+    public List<Enrolment> getEnrolmentsFromCsv(String filePath) throws FileNotFoundException, WrongCsvFormatException {
         Scanner fileScanner = new Scanner(new File(filePath));
         String row;
         List<Enrolment> enrolments = new ArrayList<>();
@@ -147,6 +160,12 @@ public class CsvService {
 
         while (fileScanner.hasNextLine()) {
             row = fileScanner.nextLine();
+
+            // Validate row
+            if (!CsvValidator.isAValidCsvRow(row)) {
+                throw new WrongCsvFormatException();
+            }
+
             if (!row.isEmpty()) {
                 enrolment = convertCsvRowToEnrolment(row);
                 // Check if exits

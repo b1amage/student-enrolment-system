@@ -1,5 +1,6 @@
 package system;
 
+import exception.WrongCsvFormatException;
 import model.Course;
 import model.Enrolment;
 import model.Student;
@@ -42,7 +43,7 @@ public class StudentEnrolmentSystem implements StudentEnrolmentManager {
      * @throws FileNotFoundException: wrong file path
      * @throws ParseException: cannot parse string with wrong format
      */
-    public void populateData() throws FileNotFoundException, ParseException {
+    public void populateData() throws FileNotFoundException, ParseException, WrongCsvFormatException {
         String fileName = getFileName();
         populateStudents(fileName);
         populateCourses(fileName);
@@ -54,7 +55,7 @@ public class StudentEnrolmentSystem implements StudentEnrolmentManager {
      * @throws FileNotFoundException: wrong file path
      * @throws ParseException: cannot parse string with wrong format
      */
-    private void populateStudents(String fileName) throws FileNotFoundException, ParseException {
+    private void populateStudents(String fileName) throws FileNotFoundException, ParseException, WrongCsvFormatException {
         studentList.clear(); // clear all data before populate
         if (fileName.isEmpty()) {
             studentList.addAll(csvService.getStudentsFromCsv(DEFAULT_FILE_PATH));
@@ -68,7 +69,7 @@ public class StudentEnrolmentSystem implements StudentEnrolmentManager {
      * Functionality: populate course data for the system
      * @throws FileNotFoundException: wrong file path
      */
-    private void populateCourses(String fileName) throws FileNotFoundException {
+    private void populateCourses(String fileName) throws FileNotFoundException, WrongCsvFormatException {
         courseList.clear(); // clear all data before populate
         if (fileName.isEmpty()) {
             courseList.addAll(csvService.getCoursesFromCsv(DEFAULT_FILE_PATH));
@@ -83,7 +84,7 @@ public class StudentEnrolmentSystem implements StudentEnrolmentManager {
      * Functionality: populate enrolment data for the system
      * @throws FileNotFoundException: wrong file path
      */
-    private void populateEnrolments(String fileName) throws FileNotFoundException {
+    private void populateEnrolments(String fileName) throws FileNotFoundException, WrongCsvFormatException {
         enrolmentList.clear();
         if (fileName.isEmpty()) {
             enrolmentList.addAll(csvService.getEnrolmentsFromCsv(DEFAULT_FILE_PATH));
