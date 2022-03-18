@@ -39,6 +39,16 @@ public abstract class Menu {
     }
 
     /**
+     * Functionality: get the input from user by scanner
+     * @param message: Message to print out for user
+     * @return user input under string format
+     */
+    public String input(String message) {
+        System.out.println(message);
+        return sc.nextLine().trim();
+    }
+
+    /**
      * Functionality: run a loop that execute all users' request
      * @throws IOException: cannot open file
      */

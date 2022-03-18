@@ -40,10 +40,10 @@ public class CourseMenu extends Menu{
                     viewAllCourses();
                     break;
                 case "2":
-                    viewAllCoursesInASemester();
+                    handleViewAllCoursesInASemester();
                     break;
                 case "3":
-                    viewAllCourseOfAStudentInASemester();
+                    handleViewAllCourseOfAStudentInASemester();
                     break;
                 case "4":
                     return;
@@ -67,10 +67,9 @@ public class CourseMenu extends Menu{
      * Functionality: get users' inputs and request service to view all course in a semester
      * @throws IOException: file cannot be opened
      */
-    public void viewAllCoursesInASemester() throws IOException {
-        // Input semester
-        System.out.println("Enter semester: ");
-        String semester = sc.nextLine().trim();
+    public void handleViewAllCoursesInASemester() throws IOException {
+        // Get input(s)
+        String semester = input("Enter semester: ");
 
         // Call service to get filtered list
         List<Course> coursesBySemester = courseService.getCourseBySemester(semester);
@@ -82,8 +81,8 @@ public class CourseMenu extends Menu{
             Table.displayCourseTable(coursesBySemester);
 
             // Ask if write to csv file
-            System.out.println("Save those data to a csv file? (y/n)");
-            if (sc.nextLine().trim().equalsIgnoreCase("y")) {
+            boolean saveToCsv = input("Save those data to a csv file? (y/n)").equalsIgnoreCase("y");
+            if (saveToCsv) {
                 String filePath = "src/reports/course/courses_" + semester + ".csv";
                 CsvWriter.writeCourseToFile(filePath, coursesBySemester);
             }
@@ -94,14 +93,10 @@ public class CourseMenu extends Menu{
     /**
      * Functionality: get users' inputs and request service to view all courses of a student in a semester
      */
-    public void viewAllCourseOfAStudentInASemester() throws IOException {
-        // Input student id
-        System.out.println("Enter student id: ");
-        String sId = sc.nextLine().trim();
-
-        // Input semester
-        System.out.println("Enter semester: ");
-        String semester = sc.nextLine().trim();
+    public void handleViewAllCourseOfAStudentInASemester() throws IOException {
+        // Get input(s)
+        String sId = input("Enter student id: ");
+        String semester = input("Enter semester: ");
 
         // Call service to get filter list
         List<Course> coursesOfStudentBySemester = courseService.getCourseOfAStudentBySemester(sId, semester);
@@ -115,8 +110,8 @@ public class CourseMenu extends Menu{
             Table.displayCourseTable(coursesOfStudentBySemester);
 
             // Ask if write to csv file
-            System.out.println("Save those data to a csv file? (y/n)");
-            if (sc.nextLine().trim().equalsIgnoreCase("y")) {
+            boolean saveToCsv = input("Save those data to a csv file? (y/n)").equalsIgnoreCase("y");
+            if (saveToCsv) {
                 String filePath = "src/reports/course/courses_" + sId + "_" + semester + ".csv";
                 CsvWriter.writeCourseToFile(filePath, coursesOfStudentBySemester);
             }

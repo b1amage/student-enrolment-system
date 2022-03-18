@@ -45,10 +45,10 @@ public class StudentMenu extends Menu {
 
             switch (option) {
                 case "1":
-                    viewAllStudent();
+                    handleViewAllStudent();
                     break;
                 case "2":
-                    viewAllStudentInACourseInASemester();
+                    handleViewAllStudentInACourseInASemester();
                     break;
                 case "3":
                     return;
@@ -64,7 +64,7 @@ public class StudentMenu extends Menu {
     /**
      * Functionality: request the student service to get all student
      */
-    public void viewAllStudent() {
+    public void handleViewAllStudent() {
         Table.displayStudentTable(studentService.getStudents());
     }
 
@@ -72,13 +72,10 @@ public class StudentMenu extends Menu {
      * Functionality: request the student service to get student in a course in a semester
      * @throws IOException: file cannot be opened
      */
-    public void viewAllStudentInACourseInASemester() throws IOException {
+    public void handleViewAllStudentInACourseInASemester() throws IOException {
         // Get inputs
-        System.out.println("Enter course ID: ");
-        String cId = sc.nextLine().trim();
-
-        System.out.println("Enter semester: ");
-        String semester = sc.nextLine().trim();
+        String cId = input("Enter course ID: ");
+        String semester = input("Enter semester: ");
 
         // Query
         List<Student> studentsByCourse = studentService.getAllStudentInACourse(cId, semester);
@@ -92,8 +89,8 @@ public class StudentMenu extends Menu {
             Table.displayStudentTable(studentsByCourse);
 
             // Ask if write to CSV file
-            System.out.println("Save those data to a csv file? (y/n)");
-            if (sc.nextLine().trim().toLowerCase().equals("y")) {
+            boolean saveToCsv = input("Save those data to a csv file? (y/n)").equalsIgnoreCase("y");
+            if (saveToCsv) {
                 String filePath = "src/reports/student/students_" + cId + "_" + semester + ".csv";
                 CsvWriter.writeStudentToFile(filePath, studentsByCourse);
             }
