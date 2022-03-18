@@ -18,13 +18,13 @@ import java.util.List;
  * Role: Represent the system
  * Functionalities: the enrolment system to process request from the user
  */
-public class StudentEnrolmentSystem implements StudentEnrolmentManager{
+public class StudentEnrolmentSystem implements StudentEnrolmentManager {
     private final List<Student> studentList;
     private final List<Course> courseList;
     private final List<Enrolment> enrolmentList;
     private final CsvService csvService;
 
-    private static final String FILE_PATH = "src/default.csv"; // data given by requirement
+    private static final String FILE_PATH = "src/data/default.csv"; // default data given by requirement
 
     /**
      * Constructor
