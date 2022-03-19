@@ -43,6 +43,7 @@ public class UpdateMenu extends Menu {
         String semester = input("Enter semester: ");
 
         while (true) {
+            System.out.println("Updating information of student " + sId + "in semester  " + semester);
             displayCourseList(sId, semester);
             showMenu();
             String option = getOption();

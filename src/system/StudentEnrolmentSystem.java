@@ -199,6 +199,8 @@ public class StudentEnrolmentSystem implements StudentEnrolmentManager {
         if (sc.nextLine().equalsIgnoreCase("y")) {
             System.out.println("Enter file name (with the .csv): ");
             fileName = sc.nextLine().trim();
+        } else {
+            System.out.println("Using default file of the system...");
         }
 
         return fileName;

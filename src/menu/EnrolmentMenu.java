@@ -6,8 +6,6 @@ import system.StudentEnrolmentManager;
 
 import utility.display.Table;
 
-import java.io.IOException;
-
 import java.util.ArrayList;
 import java.util.List;
 
