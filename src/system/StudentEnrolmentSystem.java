@@ -191,6 +191,10 @@ public class StudentEnrolmentSystem implements StudentEnrolmentManager {
         return true;
     }
 
+    /**
+     * Functionality: Get file name from the user. If user do not want to use their file, use default file
+     * @return: a String of fileName
+     */
     private String getFileName() {
         Scanner sc = new Scanner(System.in);
         System.out.println("You want to use your own file? (y/n): ");
