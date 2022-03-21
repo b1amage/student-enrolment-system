@@ -43,7 +43,6 @@ public class UpdateMenu extends Menu {
         String semester = input("Enter semester: ");
 
         while (true) {
-            System.out.println("Updating information of student " + sId + "in semester  " + semester);
             displayCourseList(sId, semester);
             showMenu();
             String option = getOption();
@@ -76,6 +75,7 @@ public class UpdateMenu extends Menu {
         } else if (coursesOfStudentBySemester.isEmpty()) {
             System.out.printf("Student with id %s does not have any course in semester %s!\n", sId, semester);
         } else {
+            System.out.println("Updating information of student " + sId + " in semester  " + semester);
             Table.displayCourseTable(coursesOfStudentBySemester);
         }
     }
