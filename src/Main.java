@@ -15,8 +15,11 @@ public class Main {
         // Initialize new instance of StudentEnrolmentSystem
         StudentEnrolmentSystem system = new StudentEnrolmentSystem();
 
+        // Get file name
+        String fileName = system.getFileName();
+
         // Populate data from the default file
-        system.populateData();
+        system.populateData(fileName);
 
         // Create main menu from the system
         MainMenu mainMenu = new MainMenu(system);

@@ -43,8 +43,8 @@ public class StudentEnrolmentSystem implements StudentEnrolmentManager {
      * @throws FileNotFoundException: wrong file path
      * @throws ParseException: cannot parse string with wrong format
      */
-    public void populateData() throws FileNotFoundException, ParseException, WrongCsvFormatException {
-        String fileName = getFileName();
+    public void populateData(String fileName) throws FileNotFoundException, ParseException, WrongCsvFormatException {
+//        String fileName = getFileName();
         populateStudents(fileName);
         populateCourses(fileName);
         populateEnrolments(fileName);
@@ -121,9 +121,9 @@ public class StudentEnrolmentSystem implements StudentEnrolmentManager {
 
     @Override
     public boolean addEnrolment(String sId, String cId, String semester) {
-        if (getOneEnrolment(sId, cId, semester) != null) {
-            return false;
-        }
+        if (getOneEnrolment(sId, cId, semester) != null) return false; // Enrolment existed
+        if (getStudentById(sId) == null) return false; // Student not exist
+        if (getCourseById(cId) == null) return false; // Course not exist
 
         enrolmentList.add(new Enrolment(getStudentById(sId), getCourseById(cId), semester));
         return true;
@@ -131,10 +131,11 @@ public class StudentEnrolmentSystem implements StudentEnrolmentManager {
 
     @Override
     public boolean removeEnrolment(String sId, String cId, String semester) {
+        if (getStudentById(sId) == null) return false; // Student not exist
+        if (getCourseById(cId) == null) return false; // Course not exist
+
         Enrolment enrolmentToRemove = getOneEnrolment(sId, cId, semester);
-        if (enrolmentToRemove == null) {
-            return false;
-        }
+        if (enrolmentToRemove == null) return false; // Enrolment not exist
 
         enrolmentList.remove(enrolmentToRemove);
         return true;
@@ -148,9 +149,7 @@ public class StudentEnrolmentSystem implements StudentEnrolmentManager {
     @Override
     public Course getCourseById(String cId) {
         for (Course c : courseList) {
-            if (c.getId().equals(cId)) {
-                return c;
-            }
+            if (c.getId().equals(cId)) return c;
         }
 
         return null;
@@ -158,9 +157,7 @@ public class StudentEnrolmentSystem implements StudentEnrolmentManager {
 
     @Override
     public boolean addCourse(Course courseToAdd) {
-        if (getCourseById(courseToAdd.getId()) != null) {
-            return false;
-        }
+        if (getCourseById(courseToAdd.getId()) != null) return false;
 
         courseList.add(courseToAdd);
         return true;
@@ -174,10 +171,9 @@ public class StudentEnrolmentSystem implements StudentEnrolmentManager {
     @Override
     public Student getStudentById(String sId) {
         for (Student s : studentList) {
-            if (s.getId().equals(sId)) {
-                return s;
-            }
+            if (s.getId().equals(sId)) return s;
         }
+
         return null;
     }
 
@@ -195,7 +191,7 @@ public class StudentEnrolmentSystem implements StudentEnrolmentManager {
      * Functionality: Get file name from the user. If user do not want to use their file, use default file
      * @return: a String of fileName
      */
-    private String getFileName() {
+    public String getFileName() {
         Scanner sc = new Scanner(System.in);
         System.out.println("You want to use your own file? (y/n): ");
 
