@@ -111,9 +111,7 @@ public class StudentEnrolmentSystem implements StudentEnrolmentManager {
             cIdExits = e.getCourse().getId().equals(cId);
             semesterExits = e.getSemester().equals(semester);
 
-            if (sIdExits && cIdExits && semesterExits) {
-                return e;
-            }
+            if (sIdExits && cIdExits && semesterExits) return e;
         }
 
         return null;
