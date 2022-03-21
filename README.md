@@ -22,7 +22,7 @@
 - Project name: Student Enrolment System
 - Purpose: Manage students' enrolments of a university
 - Functionalities: basic CRUD (Create - Read - Update - Delete) student, course, connect the system to work as a real system
-- Technologies used: Java (jdk16), JUnit
+- Technologies used: Java (jdk16), JUnit5
 
 
 - Project started date: 14 March 2022
@@ -30,6 +30,9 @@
 
 ### To Run
 - Run the Main.java
+
+### Note
+- All the reports in csv file is saved in the reports directory
 
 ### Supporting tools used
 - LucidChart: for drawing UML, including use case diagram and class diagram (attached on zip file)
