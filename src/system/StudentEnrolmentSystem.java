@@ -41,7 +41,6 @@ public class StudentEnrolmentSystem implements StudentEnrolmentManager {
      * @throws ParseException: cannot parse string with wrong format
      */
     public void populateData(String fileName) throws FileNotFoundException, ParseException, WrongCsvFormatException {
-//        String fileName = getFileName();
         populateStudents(fileName);
         populateCourses(fileName);
         populateEnrolments(fileName);
@@ -74,7 +73,6 @@ public class StudentEnrolmentSystem implements StudentEnrolmentManager {
             String filePath = "src/data/" + fileName;
             courseList.addAll(csvService.getCoursesFromCsv(filePath));
         }
-
     }
 
     /**
@@ -89,7 +87,6 @@ public class StudentEnrolmentSystem implements StudentEnrolmentManager {
             String filePath = "src/data/" + fileName;
             enrolmentList.addAll(csvService.getEnrolmentsFromCsv(filePath));
         }
-
     }
 
     @Override
@@ -104,9 +101,9 @@ public class StudentEnrolmentSystem implements StudentEnrolmentManager {
         boolean semesterExits;
 
         for (Enrolment e : enrolmentList) {
-            sIdExits = e.getStudent().getId().equals(sId);
-            cIdExits = e.getCourse().getId().equals(cId);
-            semesterExits = e.getSemester().equals(semester);
+            sIdExits = e.getStudent().getId().equalsIgnoreCase(sId);
+            cIdExits = e.getCourse().getId().equalsIgnoreCase(cId);
+            semesterExits = e.getSemester().equalsIgnoreCase(semester);
 
             if (sIdExits && cIdExits && semesterExits) return e;
         }
@@ -143,9 +140,8 @@ public class StudentEnrolmentSystem implements StudentEnrolmentManager {
 
     @Override
     public Course getCourseById(String cId) {
-        for (Course c : courseList) {
-            if (c.getId().equals(cId)) return c;
-        }
+        for (Course c : courseList)
+            if (c.getId().equalsIgnoreCase(cId)) return c;
 
         return null;
     }
@@ -165,18 +161,15 @@ public class StudentEnrolmentSystem implements StudentEnrolmentManager {
 
     @Override
     public Student getStudentById(String sId) {
-        for (Student s : studentList) {
-            if (s.getId().equals(sId)) return s;
-        }
+        for (Student s : studentList)
+            if (s.getId().equalsIgnoreCase(sId)) return s;
 
         return null;
     }
 
     @Override
     public boolean addStudent(Student studentToAdd) {
-        if (getStudentById(studentToAdd.getId()) != null) {
-            return false;
-        }
+        if (getStudentById(studentToAdd.getId()) != null) return false;
 
         studentList.add(studentToAdd);
         return true;

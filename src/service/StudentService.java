@@ -42,10 +42,9 @@ public class StudentService {
 
         List<Student> studentsByCourse = new ArrayList<>();
 
-        for (Enrolment e : manager.getAllEnrolments()) {
-            if (e.getCourse().getId().equals(cId) && e.getSemester().equals(semester))
+        for (Enrolment e : manager.getAllEnrolments())
+            if (e.getCourse().getId().equalsIgnoreCase(cId) && e.getSemester().equalsIgnoreCase(semester))
                 studentsByCourse.add(e.getStudent());
-        }
 
         return studentsByCourse; // isEmpty if semester not found
     }

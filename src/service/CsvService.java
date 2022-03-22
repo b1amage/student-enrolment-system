@@ -98,16 +98,13 @@ public class CsvService {
             row = fileScanner.nextLine();
 
             // Validate row
-            if (!CsvValidator.isAValidCsvRow(row)) {
+            if (!CsvValidator.isAValidCsvRow(row))
                 throw new WrongCsvFormatException();
-            }
 
             if (!row.isEmpty()) {
                 student = convertCsvRowToStudent(row);
                 // Check if exits
-                if (!isExist(student, students)) {
-                    students.add(student);
-                }
+                if (!isExist(student, students)) students.add(student);
             }
         }
 
@@ -130,16 +127,13 @@ public class CsvService {
             row = fileScanner.nextLine();
 
             // Validate row
-            if (!CsvValidator.isAValidCsvRow(row)) {
+            if (!CsvValidator.isAValidCsvRow(row))
                 throw new WrongCsvFormatException();
-            }
 
             if (!row.isEmpty()) {
                 course = convertCsvRowToCourse(row);
                 // Check if exits
-                if (!isExist(course, courses)) {
-                    courses.add(course);
-                }
+                if (!isExist(course, courses)) courses.add(course);
             }
         }
 
@@ -162,16 +156,13 @@ public class CsvService {
             row = fileScanner.nextLine();
 
             // Validate row
-            if (!CsvValidator.isAValidCsvRow(row)) {
+            if (!CsvValidator.isAValidCsvRow(row))
                 throw new WrongCsvFormatException();
-            }
 
             if (!row.isEmpty()) {
                 enrolment = convertCsvRowToEnrolment(row);
                 // Check if exits
-                if (!isExist(enrolment, enrolments)) {
-                    enrolments.add(enrolment);
-                }
+                if (!isExist(enrolment, enrolments)) enrolments.add(enrolment);
             }
         }
 
@@ -183,9 +174,8 @@ public class CsvService {
      * @param fields: an array of String
      */
     public static void trimStringArray(String[] fields) {
-        for (String field : fields) {
+        for (String field : fields)
             field = field.trim();
-        }
     }
 
     /**
@@ -195,11 +185,8 @@ public class CsvService {
      * @return true if existed, false if not existed
      */
     private boolean isExist(Student student, List<Student> students) {
-        for (Student s : students) {
-            if (s.getId().equals(student.getId())) {
-                return true;
-            }
-        }
+        for (Student s : students)
+            if (s.getId().equals(student.getId())) return true;
 
         return false;
     }
@@ -211,11 +198,8 @@ public class CsvService {
      * @return true if existed, false if not existed
      */
     private boolean isExist(Course course, List<Course> courses) {
-        for (Course c : courses) {
-            if (c.getId().equals(course.getId())) {
-                return true;
-            }
-        }
+        for (Course c : courses)
+            if (c.getId().equals(course.getId())) return true;
 
         return false;
     }
@@ -237,9 +221,8 @@ public class CsvService {
             cIdExits = e.getCourse().getId().equals(enrolment.getCourse().getId());
             semesterExits = e.getSemester().equals(enrolment.getSemester());
 
-            if (sIdExits  && cIdExits && semesterExits) { // 3 criteria must be true
+            if (sIdExits  && cIdExits && semesterExits)  // 3 criteria must be true
                 return true;
-            }
         }
 
         return false;
