@@ -89,6 +89,7 @@ public class StudentMenu extends Menu {
             if (saveToCsv) {
                 String filePath = "src/reports/student/students_" + cId + "_" + semester + ".csv";
                 CsvWriter.writeStudentToFile(filePath, studentsByCourse);
+                System.out.println("Written data to "+ filePath + "!");
             }
         }
     }

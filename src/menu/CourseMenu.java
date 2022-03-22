@@ -85,6 +85,7 @@ public class CourseMenu extends Menu{
             if (saveToCsv) {
                 String filePath = "src/reports/course/courses_" + semester + ".csv";
                 CsvWriter.writeCourseToFile(filePath, coursesBySemester);
+                System.out.println("Written data to "+ filePath + "!");
             }
         }
 
@@ -114,6 +115,7 @@ public class CourseMenu extends Menu{
             if (saveToCsv) {
                 String filePath = "src/reports/course/courses_" + sId + "_" + semester + ".csv";
                 CsvWriter.writeCourseToFile(filePath, coursesOfStudentBySemester);
+                System.out.println("Written data to "+ filePath + "!");
             }
         }
     }
