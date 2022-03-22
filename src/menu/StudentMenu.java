@@ -1,16 +1,12 @@
 package menu;
 
 import model.Student;
-
 import service.StudentService;
-
 import system.StudentEnrolmentManager;
-
 import utility.csv.CsvWriter;
 import utility.display.Table;
 
 import java.io.IOException;
-
 import java.util.ArrayList;
 import java.util.List;
 

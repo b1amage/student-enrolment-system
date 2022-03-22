@@ -3,9 +3,7 @@ package menu;
 import model.Course;
 import service.CourseService;
 import service.EnrolmentService;
-
 import system.StudentEnrolmentManager;
-
 import utility.display.Table;
 
 import java.util.ArrayList;

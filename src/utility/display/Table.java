@@ -1,11 +1,9 @@
 package utility.display;
 
 import menu.Menu;
-
 import model.Course;
 import model.Enrolment;
 import model.Student;
-
 import utility.date.DateConverter;
 
 import java.util.List;

@@ -1,9 +1,7 @@
 package menu;
 
 import service.EnrolmentService;
-
 import system.StudentEnrolmentManager;
-
 import utility.display.Table;
 
 import java.util.ArrayList;

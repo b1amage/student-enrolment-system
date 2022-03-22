@@ -4,13 +4,10 @@ import exception.WrongCsvFormatException;
 import model.Course;
 import model.Enrolment;
 import model.Student;
-
 import service.CsvService;
 
 import java.io.FileNotFoundException;
-
 import java.text.ParseException;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
