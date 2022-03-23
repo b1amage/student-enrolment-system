@@ -22,7 +22,6 @@ public class AddStudentTest {
 
     @org.junit.jupiter.api.Test
     void addExistedStudent() throws ParseException {
-        //       S102732,Mark Duong,8/28/2001,COSC3321,Artificial Intelligence,3,2021A
         boolean isSuccess = system.addStudent(new Student("S102732", "Mark Duong",
                 DateConverter.convertStringToDate("8/28/2001")));
 

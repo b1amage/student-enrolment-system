@@ -20,7 +20,6 @@ public class AddEnrolmentTest {
 
     @org.junit.jupiter.api.Test
     void addNonExistCourse() {
-        //        S102732,Mark Duong,8/28/2001,COSC3321,Artificial Intelligence,3,2021A
         boolean isSuccess = system.addEnrolment("S102732", "COSC1234", "2020C");
         assertFalse(isSuccess);
     }

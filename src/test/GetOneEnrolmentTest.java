@@ -20,7 +20,6 @@ public class GetOneEnrolmentTest {
 
     @org.junit.jupiter.api.Test
     void getExistEnrolment() {
-//        S102732,Mark Duong,8/28/2001,COSC3321,Artificial Intelligence,3,2021A
         Enrolment e = system.getOneEnrolment("S102732", "COSC3321", "2021A");
         assertNotNull(e);
     }

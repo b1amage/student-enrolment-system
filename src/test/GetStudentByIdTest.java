@@ -27,7 +27,6 @@ public class GetStudentByIdTest {
 
     @org.junit.jupiter.api.Test
     void getExistStudent() throws ParseException {
-        // Ngan Thu Vo,3/9/1998
         Student s = system.getStudentById("S103192");
         assertNotNull(s);
         assertEquals("S103192", s.getId());
