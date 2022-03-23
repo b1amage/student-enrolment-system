@@ -89,5 +89,4 @@ public interface StudentEnrolmentManager {
      * @return true if add successfully (not already existed), false if add unsuccessfully (already existed)
      */
     boolean addStudent(Student studentToAdd);
-
 }

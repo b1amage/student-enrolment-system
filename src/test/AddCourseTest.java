@@ -1,9 +1,7 @@
 package test;
 
 import exception.WrongCsvFormatException;
-
 import model.Course;
-
 import system.StudentEnrolmentSystem;
 
 import java.io.FileNotFoundException;

@@ -1,4 +1,5 @@
 package test;
+
 import exception.WrongCsvFormatException;
 import model.Enrolment;
 import org.junit.jupiter.api.BeforeEach;

@@ -80,7 +80,7 @@ public class StudentEnrolmentSystem implements StudentEnrolmentManager {
      * @throws FileNotFoundException: wrong file path
      */
     private void populateEnrolments(String fileName) throws FileNotFoundException, WrongCsvFormatException {
-        enrolmentList.clear();
+        enrolmentList.clear(); // clear all data before populate
         if (fileName.isEmpty()) {
             enrolmentList.addAll(csvService.getEnrolmentsFromCsv(DEFAULT_FILE_PATH));
         } else {

@@ -38,7 +38,7 @@ public class StudentService {
      * @return a list of student
      */
     public List<Student> getAllStudentInACourse(String cId, String semester) {
-        if (manager.getCourseById(cId) == null) return null;
+        if (manager.getCourseById(cId) == null) return null; // Student not exist
 
         List<Student> studentsByCourse = new ArrayList<>();
 
