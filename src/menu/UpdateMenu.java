@@ -69,9 +69,9 @@ public class UpdateMenu extends Menu {
 
         // Check and display
         if (coursesOfStudentBySemester == null) {
-            System.out.printf("Student with id %s does not exist!\n", sId);
+            System.err.printf("Student with id %s does not exist!\n", sId);
         } else if (coursesOfStudentBySemester.isEmpty()) {
-            System.out.printf("Student with id %s does not have any course in semester %s!\n", sId, semester);
+            System.err.printf("Student with id %s does not have any course in semester %s!\n", sId, semester);
         } else {
             System.out.println("Updating information of student " + sId + " in semester " + semester);
             Table.displayCourseTable(coursesOfStudentBySemester);

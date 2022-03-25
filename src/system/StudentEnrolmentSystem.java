@@ -41,9 +41,14 @@ public class StudentEnrolmentSystem implements StudentEnrolmentManager {
      * @throws ParseException: cannot parse string with wrong format
      */
     public void populateData(String fileName) throws FileNotFoundException, ParseException, WrongCsvFormatException {
-        populateStudents(fileName);
-        populateCourses(fileName);
-        populateEnrolments(fileName);
+        try {
+            populateStudents(fileName);
+            populateCourses(fileName);
+            populateEnrolments(fileName);
+        } catch (FileNotFoundException fileNotFoundException) {
+            System.err.println("File " + fileName + " cannot be found!");
+            System.exit(0);
+        }
     }
 
     /**
@@ -187,9 +192,9 @@ public class StudentEnrolmentSystem implements StudentEnrolmentManager {
         if (sc.nextLine().equalsIgnoreCase("y")) {
             System.out.println("Enter file name (with the .csv): ");
             fileName = sc.nextLine().trim();
-            System.out.println("Using " + fileName + "...");
+            System.out.println("Populating " + fileName + "...");
         } else {
-            System.out.println("Using default file of the system...");
+            System.out.println("Populating default file of the system...");
         }
 
         return fileName;

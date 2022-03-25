@@ -78,9 +78,9 @@ public class StudentMenu extends Menu {
 
         // Display
         if (studentsByCourse == null) {
-            System.out.printf("Course with id %s is not exist!\n", cId);
+            System.err.printf("Course with id %s is not exist!\n", cId);
         } else if (studentsByCourse.isEmpty()) {
-            System.out.printf("Course with id %s may not be available at semester %s!\n", cId, semester);
+            System.err.printf("Course with id %s may not be available at semester %s!\n", cId, semester);
         } else {
             Table.displayStudentTable(studentsByCourse);
 

@@ -76,7 +76,7 @@ public class CourseMenu extends Menu{
 
         // Check and display
         if (coursesBySemester == null) {
-            System.out.printf("There is no course on semester %s!\n", semester);
+            System.err.printf("There is no course on semester %s!\n", semester);
         } else {
             Table.displayCourseTable(coursesBySemester);
 
@@ -104,9 +104,9 @@ public class CourseMenu extends Menu{
 
         // Check and display
         if (coursesOfStudentBySemester == null) {
-            System.out.printf("Student with id %s does not exist!\n", sId);
+            System.err.printf("Student with id %s does not exist!\n", sId);
         } else if (coursesOfStudentBySemester.isEmpty()) {
-            System.out.printf("Student with id %s does not have any course in semester %s!\n", sId, semester);
+            System.err.printf("Student with id %s does not have any course in semester %s!\n", sId, semester);
         } else {
             Table.displayCourseTable(coursesOfStudentBySemester);
 
