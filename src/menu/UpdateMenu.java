@@ -73,7 +73,7 @@ public class UpdateMenu extends Menu {
         } else if (coursesOfStudentBySemester.isEmpty()) {
             System.out.printf("Student with id %s does not have any course in semester %s!\n", sId, semester);
         } else {
-            System.out.println("Updating information of student " + sId + " in semester  " + semester);
+            System.out.println("Updating information of student " + sId + " in semester " + semester);
             Table.displayCourseTable(coursesOfStudentBySemester);
         }
     }
@@ -86,7 +86,8 @@ public class UpdateMenu extends Menu {
     public void handleEnrolCourse(String sId, String semester) {
         // Get input(s)
         String cId = input("Enter course id: ");
-        enrolmentService.enrolCourse(sId, cId, semester);
+        boolean isSuccess = enrolmentService.enrolCourse(sId, cId, semester);
+        System.out.println(isSuccess ? "Enrol course successfully!" : "Enrol course fail!");
     }
 
     /**
@@ -97,7 +98,8 @@ public class UpdateMenu extends Menu {
     public void handleDropCourse(String sId, String semester) {
         // Get input(s)
         String cId = input("Enter course id: ");
-        enrolmentService.dropCourse(sId, cId, semester);
+        boolean isSuccess = enrolmentService.dropCourse(sId, cId, semester);
+        System.out.println(isSuccess ? "Drop course successfully!" : "Drop course fail!");
     }
 
     @Override

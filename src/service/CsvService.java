@@ -185,8 +185,10 @@ public class CsvService {
      * @return true if existed, false if not existed
      */
     private boolean isExist(Student student, List<Student> students) {
-        for (Student s : students)
+        for (Student s : students) {
             if (s.getId().equals(student.getId())) return true;
+        }
+
 
         return false;
     }
@@ -198,8 +200,10 @@ public class CsvService {
      * @return true if existed, false if not existed
      */
     private boolean isExist(Course course, List<Course> courses) {
-        for (Course c : courses)
-            if (c.getId().equals(course.getId())) return true;
+        for (Course c : courses) {
+            if (c.getId().equals(course.getId()))
+                return true;
+        }
 
         return false;
     }
