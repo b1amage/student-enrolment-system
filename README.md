@@ -28,6 +28,23 @@
 - Project started date: 14 March 2022
 - Project finished date: 3 April 2022
 
+### Directory
+* [src](./src)
+    * [data](./src/data): store csv files
+    * [exception](./src/exception): store exception files
+    * [menu](./src/menu): store menu files
+    * [model](./src/model): store model files (Student, Course, and Enrolment)
+    * [reports](./src/reports)
+  
+        *[course](./src/reports/course): store csv reports about courses
+  
+        *[student](./src/reports/student): store csv reports about students
+    * [service](./src/service): store service of models file
+    * [system](./src/system): store system file (including an interface and its implementation)
+    * [test](./src/test): storing all unit test files
+    * [utility](./src/utility): storing all utilities classes
+    
+
 ### To Run
 - Run the Main.java
 
