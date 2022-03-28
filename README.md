@@ -53,5 +53,7 @@
 
 ### Supporting tools used
 - LucidChart: for drawing UML, including use case diagram and class diagram (attached on zip file)
+- IntelliJ: for configuration and coding the app
+- Microsoft Word 2022: for documenting technical report
 
 ### References
