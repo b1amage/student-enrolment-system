@@ -81,7 +81,7 @@ public class CourseMenu extends Menu{
             Table.displayCourseTable(coursesBySemester);
 
             // Ask if write to csv file
-            boolean saveToCsv = input("Save those data to a csv file? (y/n)").equalsIgnoreCase("y");
+            boolean saveToCsv = input("Save those data to a csv file? (y: yes, any other keys: no)").equalsIgnoreCase("y");
             if (saveToCsv) {
                 String filePath = "src/reports/course/courses_" + semester + ".csv";
                 CsvWriter.writeCourseToFile(filePath, coursesBySemester);
@@ -111,7 +111,7 @@ public class CourseMenu extends Menu{
             Table.displayCourseTable(coursesOfStudentBySemester);
 
             // Ask if write to csv file
-            boolean saveToCsv = input("Save those data to a csv file? (y/n)").equalsIgnoreCase("y");
+            boolean saveToCsv = input("Save those data to a csv file? (y: yes, any other keys: no):").equalsIgnoreCase("y");
             if (saveToCsv) {
                 String filePath = "src/reports/course/courses_" + sId + "_" + semester + ".csv";
                 CsvWriter.writeCourseToFile(filePath, coursesOfStudentBySemester);

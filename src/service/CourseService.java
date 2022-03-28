@@ -42,7 +42,7 @@ public class CourseService {
         Set<Course> courses = new HashSet<>(); // Avoid duplicate
 
         for (Enrolment e : manager.getAllEnrolments()) {
-            if (e.getSemester().equalsIgnoreCase(semester)) courses.add(e.getCourse());
+            if (e.getSemester().equals(semester)) courses.add(e.getCourse());
         }
 
         List<Course> courseBySemester = new ArrayList<>(courses); // cast back to array list
@@ -65,7 +65,7 @@ public class CourseService {
 
         // Loop through enrolment list
         for (Enrolment e : manager.getAllEnrolments()) {
-            if (e.getStudent().getId().equalsIgnoreCase(sId) && e.getSemester().equalsIgnoreCase(semester))
+            if (e.getStudent().getId().equals(sId) && e.getSemester().equals(semester))
                 coursesOfStudentBySemester.add(e.getCourse());
         }
 

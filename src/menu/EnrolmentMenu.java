@@ -75,6 +75,9 @@ public class EnrolmentMenu extends Menu {
         boolean isSuccess = enrolmentService.enrolCourse(sId, cId, semester);
 
         // Display state
-        System.out.println(isSuccess ? "Enrol successfully!" : "Enrol failed!");
+        if (isSuccess)
+            System.out.println("Enrol successfully!");
+        else
+            System.err.println("Enrol failed!");
     }
 }

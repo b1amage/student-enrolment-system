@@ -47,7 +47,10 @@ public class StudentEnrolmentSystem implements StudentEnrolmentManager {
             populateEnrolments(fileName);
         } catch (FileNotFoundException fileNotFoundException) {
             System.err.println("File " + fileName + " cannot be found!");
-            System.exit(0);
+            System.exit(0); // Stop the program
+        } catch (WrongCsvFormatException wrongCsvFormatException) {
+            System.err.println("CSV was written in wrong format or a field is null!");
+            System.exit(0); // Stop the program
         }
     }
 
@@ -106,9 +109,9 @@ public class StudentEnrolmentSystem implements StudentEnrolmentManager {
         boolean semesterExits;
 
         for (Enrolment e : enrolmentList) {
-            sIdExits = e.getStudent().getId().equalsIgnoreCase(sId);
-            cIdExits = e.getCourse().getId().equalsIgnoreCase(cId);
-            semesterExits = e.getSemester().equalsIgnoreCase(semester);
+            sIdExits = e.getStudent().getId().equals(sId);
+            cIdExits = e.getCourse().getId().equals(cId);
+            semesterExits = e.getSemester().equals(semester);
 
             if (sIdExits && cIdExits && semesterExits) return e;
         }
@@ -146,7 +149,7 @@ public class StudentEnrolmentSystem implements StudentEnrolmentManager {
     @Override
     public Course getCourseById(String cId) {
         for (Course c : courseList)
-            if (c.getId().equalsIgnoreCase(cId)) return c;
+            if (c.getId().equals(cId)) return c;
 
         return null;
     }
@@ -167,7 +170,7 @@ public class StudentEnrolmentSystem implements StudentEnrolmentManager {
     @Override
     public Student getStudentById(String sId) {
         for (Student s : studentList)
-            if (s.getId().equalsIgnoreCase(sId)) return s;
+            if (s.getId().equals(sId)) return s;
 
         return null;
     }
@@ -186,7 +189,7 @@ public class StudentEnrolmentSystem implements StudentEnrolmentManager {
      */
     public String getFileName() {
         Scanner sc = new Scanner(System.in);
-        System.out.println("You want to use your own file? (y/n): ");
+        System.out.println("You want to use your own file? (y: yes, any other keys: no): ");
 
         String fileName = "";
         if (sc.nextLine().equalsIgnoreCase("y")) {

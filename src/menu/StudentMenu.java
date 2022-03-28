@@ -85,7 +85,7 @@ public class StudentMenu extends Menu {
             Table.displayStudentTable(studentsByCourse);
 
             // Ask if write to CSV file
-            boolean saveToCsv = input("Save those data to a csv file? (y/n)").equalsIgnoreCase("y");
+            boolean saveToCsv = input("Save those data to a csv file? (y: yes, any other keys: no)").equalsIgnoreCase("y");
             if (saveToCsv) {
                 String filePath = "src/reports/student/students_" + cId + "_" + semester + ".csv";
                 CsvWriter.writeStudentToFile(filePath, studentsByCourse);

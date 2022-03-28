@@ -15,7 +15,7 @@ import java.util.List;
  * Functionalities: write list of object to a csv file
  * */
 public class CsvWriter {
-    private static final String separator = ",";
+    private static final String SEPARATOR = ",";
 
     /**
      * Functionality: write a list of student to csv file
@@ -27,12 +27,12 @@ public class CsvWriter {
         BufferedWriter bw = new BufferedWriter(new FileWriter(filePath));
 
         // Write header field
-        bw.write("id" + separator + "name" + separator + "birthday\n");
+        bw.write("id" + SEPARATOR + "name" + SEPARATOR + "birthday\n");
 
         String row; // declare temporary row outside loop to avoid re-declare
         for (Student s : list) {
             // write row by row to csv file
-            row = s.getId() + separator + s.getName() + separator + DateConverter.convertDateToString(s.getBirthday()) + "\n";
+            row = s.getId() + SEPARATOR + s.getName() + SEPARATOR + DateConverter.convertDateToString(s.getBirthday()) + "\n";
             bw.write(row);
         }
 
@@ -49,13 +49,13 @@ public class CsvWriter {
         BufferedWriter bw = new BufferedWriter(new FileWriter(filePath));
 
         // Write header field
-        bw.write("id" + separator + "name" + separator + "credit\n");
+        bw.write("id" + SEPARATOR + "name" + SEPARATOR + "credit\n");
 
         String row; // declare temporary row outside loop to avoid re-declare
 
         for (Course c : list) {
             // write row by row to csv file
-            row = c.getId() + separator + c.getName() + separator + c.getNumberOfCredit() + "\n";
+            row = c.getId() + SEPARATOR + c.getName() + SEPARATOR + c.getNumberOfCredit() + "\n";
             bw.write(row);
         }
 

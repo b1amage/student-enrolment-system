@@ -87,7 +87,12 @@ public class UpdateMenu extends Menu {
         // Get input(s)
         String cId = input("Enter course id: ");
         boolean isSuccess = enrolmentService.enrolCourse(sId, cId, semester);
-        System.out.println(isSuccess ? "Enrol course successfully!" : "Enrol course fail!");
+
+        // Display state
+        if (isSuccess)
+            System.out.println("Enrol successfully!");
+        else
+            System.err.println("Enrol failed!");
     }
 
     /**
@@ -99,7 +104,12 @@ public class UpdateMenu extends Menu {
         // Get input(s)
         String cId = input("Enter course id: ");
         boolean isSuccess = enrolmentService.dropCourse(sId, cId, semester);
-        System.out.println(isSuccess ? "Drop course successfully!" : "Drop course fail!");
+
+        // Display state
+        if (isSuccess)
+            System.out.println("Drop successfully!");
+        else
+            System.err.println("Drop failed!");
     }
 
     @Override
