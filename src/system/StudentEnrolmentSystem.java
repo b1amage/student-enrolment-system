@@ -224,7 +224,7 @@ public class StudentEnrolmentSystem implements StudentEnrolmentManager {
                 fileName = sc.nextLine().trim();
 
                 if (!csvService.isFileExist(fileName)) {
-                    System.err.println("File cannot be found. Please try again (with the .csv): ");
+                    System.err.println("File cannot be found. Please try again.");
                 }
             } while (!csvService.isFileExist(fileName));
 
