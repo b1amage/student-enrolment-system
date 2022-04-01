@@ -3,6 +3,7 @@ package menu;
 import model.Course;
 import service.CourseService;
 import service.EnrolmentService;
+import service.StudentService;
 import system.StudentEnrolmentManager;
 import utility.display.Table;
 
@@ -24,6 +25,7 @@ public class UpdateMenu extends Menu {
 
     private final EnrolmentService enrolmentService;
     private final CourseService courseService;
+    private final StudentService studentService;
 
     /**
      * Constructor
@@ -32,13 +34,22 @@ public class UpdateMenu extends Menu {
     public UpdateMenu(StudentEnrolmentManager manager) {
         enrolmentService = new EnrolmentService(manager);
         courseService = new CourseService(manager);
+        studentService = new StudentService(manager);
     }
 
     @Override
     public void run() {
         // Get input(s)
-        String sId = input("Enter student id: ");
-        String semester = input("Enter semester: ");
+        String sId;
+        String semester;
+        do {
+            sId = input("Enter student id: ");
+            semester = input("Enter semester: ");
+
+            if (studentService.getStudentById(sId) == null)
+                System.err.println("Student not exist, please try again.");
+
+        } while(studentService.getStudentById(sId) == null);
 
         while (true) {
             displayCourseList(sId, semester);

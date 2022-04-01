@@ -12,6 +12,7 @@ import java.util.List;
  * */
 public class EnrolmentService {
     private final StudentEnrolmentManager manager;
+    private final CourseService courseService;
 
     /**
      * Constructor
@@ -19,6 +20,7 @@ public class EnrolmentService {
      */
     public EnrolmentService(StudentEnrolmentManager manager) {
         this.manager = manager;
+        courseService = new CourseService(manager);
     }
 
     /**
@@ -37,12 +39,17 @@ public class EnrolmentService {
      * @return true if enrol successfully, false if enrol fail
      */
     public boolean enrolCourse(String sId, String cId, String semester) {
-        // Check sid exist
-        if (manager.getStudentById(sId) == null) return false;
+        // Course not exist
+        if (manager.getCourseById(cId) == null) {
+            System.err.println("Course does not exist!");
+            return false;
+        }
 
-        // Check cid exit
-        if (manager.getCourseById(cId) == null) return false;
-
+        // Course not available at that semester
+        if (!courseService.getCourseBySemester(semester).contains(manager.getCourseById(cId))) {
+            System.err.println("Course is not available at " + semester);
+            return false;
+        }
         // Enrol
         return manager.addEnrolment(sId, cId, semester);
     }
@@ -55,12 +62,6 @@ public class EnrolmentService {
      * @return true if drop successfully, false if drop fail
      */
     public boolean dropCourse(String sId, String cId, String semester) {
-        // Check sid exist
-        if (manager.getStudentById(sId) == null) return false;
-
-        // Check cid exit
-        if (manager.getCourseById(cId) == null) return false;
-
         // Drop
         return manager.removeEnrolment(sId, cId, semester);
     }

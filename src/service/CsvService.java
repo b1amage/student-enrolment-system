@@ -179,7 +179,7 @@ public class CsvService {
     }
 
     /**
-     * Check if the student is already existed on a list by comparing id
+     *  Functionality: check if the student is already existed on a list by comparing id
      * @param student: student to be checked
      * @param students: list to be checked
      * @return true if existed, false if not existed
@@ -194,7 +194,7 @@ public class CsvService {
     }
 
     /**
-     * Check if the course is already existed on a list by comparing id
+     *  Functionality: check if the course is already existed on a list by comparing id
      * @param course: course to be checked
      * @param courses: list to be checked
      * @return true if existed, false if not existed
@@ -209,7 +209,7 @@ public class CsvService {
     }
 
     /**
-     * Check if the course is already existed on a list by comparing student id, course id, and semester
+     *  Functionality: check if the course is already existed on a list by comparing student id, course id, and semester
      * @param enrolment: enrolment to be checked
      * @param enrolments: list to be checked
      * @return true if existed, false if not existed
@@ -230,5 +230,21 @@ public class CsvService {
         }
 
         return false;
+    }
+
+    /**
+     *  Functionality: check if the file does exist (used to validate user input)
+     * @param fileName: the name of the file
+     * @return true if it does exist, false when does not exist
+     */
+    public boolean isFileExist(String fileName) {
+        // Create file path
+        String filePath = "src/data/" + fileName;
+
+        // Create new file on that path
+        File file = new File(filePath);
+
+        // Check if the file does exist, and it is not a directory
+        return !file.isDirectory() && file.exists();
     }
 }

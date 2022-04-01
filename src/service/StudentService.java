@@ -48,4 +48,8 @@ public class StudentService {
 
         return studentsByCourse; // isEmpty if semester not found
     }
+
+    public Student getStudentById(String sId) {
+        return manager.getStudentById(sId);
+    }
 }

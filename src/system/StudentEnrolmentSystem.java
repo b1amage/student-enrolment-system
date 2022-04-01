@@ -8,9 +8,7 @@ import service.CsvService;
 
 import java.io.FileNotFoundException;
 import java.text.ParseException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 /**
  * Class: StudentEnrolmentSystem
@@ -121,9 +119,23 @@ public class StudentEnrolmentSystem implements StudentEnrolmentManager {
 
     @Override
     public boolean addEnrolment(String sId, String cId, String semester) {
-        if (getOneEnrolment(sId, cId, semester) != null) return false; // Enrolment existed
-        if (getStudentById(sId) == null) return false; // Student not exist
-        if (getCourseById(cId) == null) return false; // Course not exist
+        // Enrolment existed
+        if (getOneEnrolment(sId, cId, semester) != null) {
+            System.err.println("Enrolment existed!");
+            return false;
+        }
+
+        // Student not exist
+        if (getStudentById(sId) == null) {
+            System.err.println("Student does not exist");
+            return false;
+        }
+
+        // Course not exist
+        if (getCourseById(cId) == null) {
+            System.err.println("Course does not exist");
+            return false;
+        }
 
         enrolmentList.add(new Enrolment(getStudentById(sId), getCourseById(cId), semester));
         return true;
@@ -131,12 +143,26 @@ public class StudentEnrolmentSystem implements StudentEnrolmentManager {
 
     @Override
     public boolean removeEnrolment(String sId, String cId, String semester) {
-        if (getStudentById(sId) == null) return false; // Student not exist
-        if (getCourseById(cId) == null) return false; // Course not exist
+        // Student not exist
+        if (getStudentById(sId) == null) {
+            System.err.println("Student does not exist");
+            return false;
+        }
 
+        // Course not exist
+        if (getCourseById(cId) == null) {
+            System.err.println("Course does not exist");
+            return false;
+        }
+
+        // Enrolment not exist
         Enrolment enrolmentToRemove = getOneEnrolment(sId, cId, semester);
-        if (enrolmentToRemove == null) return false; // Enrolment not exist
+        if (enrolmentToRemove == null) {
+            System.err.println("Enrolment does not exist");
+            return false;
+        }
 
+        // All verifications passed
         enrolmentList.remove(enrolmentToRemove);
         return true;
     }
@@ -193,9 +219,17 @@ public class StudentEnrolmentSystem implements StudentEnrolmentManager {
 
         String fileName = "";
         if (sc.nextLine().equalsIgnoreCase("y")) {
-            System.out.println("Enter file name (with the .csv): ");
-            fileName = sc.nextLine().trim();
+            do {
+                System.out.println("Enter file name (with the .csv): ");
+                fileName = sc.nextLine().trim();
+
+                if (!csvService.isFileExist(fileName)) {
+                    System.err.println("File cannot be found. Please try again (with the .csv): ");
+                }
+            } while (!csvService.isFileExist(fileName));
+
             System.out.println("Populating " + fileName + "...");
+
         } else {
             System.out.println("Populating default file of the system...");
         }
